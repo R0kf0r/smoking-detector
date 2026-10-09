@@ -1,0 +1,37 @@
+# Видео с объекта: никогда не коммитим
+private/
+
+# Публичные данные большие: в git только журнал источников
+data/public/*
+!data/public/SOURCES.md
+
+# Разметка роликов объекта: локально, не публикуем
+labels/*.csv
+
+# Кэш тяжёлого прогона (рамки, ID, точки) — большой, пересчитывается
+results/cache/
+
+# Видео и результаты рендера
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Веса моделей скачиваются автоматически
+*.pt
+*.onnx
+
+# Пробные прогоны Ultralytics и служебные файлы Claude Code
+runs/
+.claude/worktrees/
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# Системное и IDE
+.DS_Store
+.idea/
