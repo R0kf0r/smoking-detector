@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Детектор курения — просмотр</title>
+<style>
+@font-face { font-family: "Golos Text"; src: url("/static/GolosText-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Golos Text"; src: url("/static/GolosText-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+:root {
+  --bg: #1B242B; --surface: #24313A; --line: #33424C; --text: #E8EEF1; --muted: #9FB0BA;
+  --steel: #8FA3B0; --amber: #F2B544; --carmine: #E5484D;
+  --amber-fill: rgba(242, 181, 68, 0.22); --radius: 6px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body { font-family: "Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 14px; line-height: 1.45;
+       font-variant-numeric: tabular-nums; min-height: 100vh; }
+button, select, input { font: inherit; color: inherit; }
+a { color: var(--text); }
+.wrap { max-width: 1480px; margin: 0 auto; padding: 16px 20px 32px; }
+
+/* шапка */
+header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 28px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+header.top h1 { font-size: 18px; font-weight: 600; margin: 0; letter-spacing: 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--muted); }
+.stat b { color: var(--text); font-weight: 600; }
+.pill { display: inline-block; border: 1px solid var(--line); border-radius: var(--radius); padding: 1px 8px; color: var(--muted); }
+.pill.warn { border-color: var(--amber); color: var(--amber); }
+
+/* панель действий */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 14px 0; }
+select#clip { min-width: 320px; max-width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 7px 10px; }
+.btn { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 7px 14px; cursor: pointer; }
+.btn:hover:not(:disabled) { border-color: var(--steel); }
+.btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 600; }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.status { display: flex; align-items: center; gap: 10px; color: var(--muted); min-height: 32px; flex: 1 1 260px; }
+.bar { width: 160px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; flex: none; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--amber); transition: width .3s; }
+.bar.indet > i { width: 30%; animation: indet 1.2s linear infinite; }
+@keyframes indet { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+
+/* сетка */
+main.grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 16px; align-items: start; }
+@media (max-width: 1050px) { main.grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border-radius: var(--radius); padding: 14px 16px; }
+.card + .card { margin-top: 16px; }
+.card h2 { font-size: 14px; font-weight: 600; margin: 0 0 10px; }
+.muted { color: var(--muted); }
+.small { font-size: 12.5px; }
+
+/* видео */
+.player { position: relative; background: #0f1519; border-radius: var(--radius); overflow: hidden; min-height: 300px;
+          display: flex; align-items: center; justify-content: center; }
+.player video { display: block; width: 100%; height: auto; max-height: 78vh; background: #0f1519; }
+.empty { color: var(--muted); text-align: center; padding: 60px 24px; }
+.empty b { color: var(--text); font-weight: 600; display: block; font-size: 16px; margin-bottom: 6px; }
+.drop { outline: 2px dashed var(--amber); outline-offset: -8px; }
+
+/* график */
+.chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline; margin-bottom: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); border-radius: var(--radius); padding: 1px 8px; background: transparent; cursor: pointer; color: var(--muted); }
+.chip.on { border-color: var(--text); color: var(--text); }
+svg#chart { width: 100%; height: 210px; display: block; cursor: crosshair; }
+.tip { position: fixed; pointer-events: none; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+       padding: 4px 8px; font-size: 12.5px; display: none; white-space: nowrap; z-index: 10; }
+
+/* события */
+.events-h { display: flex; justify-content: space-between; align-items: baseline; }
+.event { display: block; width: 100%; text-align: left; background: var(--bg); border: 1px solid var(--line); border-left: 3px solid var(--carmine);
+         border-radius: var(--radius); padding: 9px 12px; margin-top: 8px; cursor: pointer; }
+.event:hover { border-color: var(--steel); border-left-color: var(--carmine); }
+.event.active { border-color: var(--text); border-left-color: var(--carmine); }
+.ev-top { display: flex; justify-content: space-between; font-weight: 600; }
+.ev-sub { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+
+/* итог, ответы, время */
+.verdict { font-size: 16px; font-weight: 600; margin: 2px 0 6px; }
+.verdict.bad { color: var(--carmine); }
+.verdict.miss { color: var(--amber); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin: 4px 0 8px; }
+.seg button { background: transparent; border: 0; padding: 4px 10px; cursor: pointer; color: var(--muted); }
+.seg button.on { background: var(--line); color: var(--text); }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
+.hist { display: grid; grid-template-columns: 112px 1fr 34px; gap: 4px 8px; align-items: center; }
+.hist .track { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.hist .track > i { display: block; height: 100%; background: var(--steel); }
+.hist .track > i.smoke { background: var(--carmine); }
+.hist .track > i.veto { background: var(--amber); }
+.hist .n { text-align: right; color: var(--muted); }
+details { margin-top: 0; }
+details summary { cursor: pointer; font-weight: 600; }
+table.cyc { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
+table.cyc th, table.cyc td { text-align: left; padding: 4px 8px 4px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.cyc th { color: var(--muted); font-weight: 400; }
+table.cyc tr.click { cursor: pointer; }
+table.cyc tr.click:hover td { color: var(--text); background: rgba(255,255,255,0.03); }
+.tag-smoke { color: var(--carmine); }
+.tag-veto { color: var(--amber); }
+.links a { display: inline-block; margin: 4px 14px 0 0; }
+.log { font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: var(--muted); white-space: pre-wrap; max-height: 160px; overflow: auto; margin-top: 8px; }
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <header class="top">
+    <h1>Детектор курения</h1>
+    <div class="stats" id="stats"><span class="muted">загружаю итоги…</span></div>
+  </header>
+
+  <div class="toolbar">
+    <select id="clip" aria-label="Ролик"></select>
+    <button class="btn" id="uploadBtn" type="button">Загрузить ролик</button>
+    <input type="file" id="file" accept="video/*,.mkv,.wmv,.avi,.ts,.mts,.dav,.flv,.3gp,.asf" class="hidden">
+    <button class="btn primary" id="processBtn" type="button" disabled>Обработать ролик</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <main class="grid">
+    <section>
+      <div class="player" id="player">
+        <div class="empty" id="empty"><b>Выберите ролик или перетащите файл сюда</b>события появятся здесь</div>
+        <video id="video" controls playsinline preload="metadata" class="hidden"></video>
+      </div>
+
+      <div class="card hidden" id="chartCard" style="margin-top:16px">
+        <div class="chart-head">
+          <h2 id="chartTitle" style="margin:0">След жеста</h2>
+          <div class="chips" id="chips"></div>
+        </div>
+        <div class="muted small" id="chartNote">расстояние «кисть — рот» в длинах торса; ниже пунктира входа — рука у рта; клик по графику перематывает видео</div>
+        <svg id="chart" role="img" aria-label="След жеста"></svg>
+      </div>
+
+      <div class="card hidden" id="cycCard">
+        <details id="cycDetails">
+          <summary id="cycSummary">Циклы и кандидаты</summary>
+          <div id="cycles"></div>
+        </details>
+      </div>
+    </section>
+
+    <aside>
+      <div class="card">
+        <div class="events-h"><h2 id="evTitle">События</h2><span class="muted small" id="evNote"></span></div>
+        <div id="events" class="muted">Событий пока нет</div>
+      </div>
+      <div class="card" id="verdictCard">
+        <h2>Итог по ролику</h2>
+        <div id="verdict" class="muted">—</div>
+      </div>
+      <div class="card">
+        <h2>Ответы проверки</h2>
+        <div id="vlm" class="muted">—</div>
+      </div>
+      <div class="card">
+        <h2>Время и файлы</h2>
+        <div id="timing" class="muted">—</div>
+        <div class="links" id="links"></div>
+      </div>
+      <div class="card">
+        <details>
+          <summary>Правила решения</summary>
+          <div id="rules" class="small muted" style="margin-top:8px">—</div>
+        </details>
+      </div>
+    </aside>
+  </main>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+"use strict";
+const $ = (s) => document.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+const S = { items: [], key: null, res: null, track: null, job: null, poll: null, labelGuess: {}, busy: false };
+const RU = {
+  cigarette: "сигарета", vape: "вейп", lollipop: "леденец", toothpick: "зубочистка", pen: "ручка", phone: "телефон",
+  bottle: "бутылка", can: "банка", cup: "стакан", food: "еда", hand: "пустая рука", unclear: "неясно",
+  "obj:phone": "детектор: телефон", "obj:bottle": "детектор: бутылка", "obj:cup": "детектор: стакан",
+};
+const SMOKE = new Set(["cigarette"]);
+const VETO = new Set(["lollipop", "toothpick", "pen", "phone", "bottle", "can", "cup", "food", "obj:phone", "obj:bottle", "obj:cup"]);
+const REASON = { too_short: "пауза короче 0,5 с", too_long: "пауза дольше 5 с (телефон, разговор)",
+  lost_at_mouth: "точки кисти пропали у рта", track_ended: "трек оборвался у рта" };
+
+function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function esc(s) { return String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+function num(x, d = 2) { return x == null || x === "" || isNaN(+x) ? "—" : (+x).toFixed(d).replace(".", ","); }
+function tc(s, frac = false) {
+  if (s == null || isNaN(+s)) return "—";
+  s = Math.max(0, +s);
+  const m = Math.floor(s / 60), r = s - m * 60;
+  const sec = frac ? r.toFixed(1).replace(".", ",").padStart(4, "0") : String(Math.floor(r)).padStart(2, "0");
+  return `${m}:${sec}`;
+}
+function plural(n, forms) {
+  const a = Math.abs(n) % 100, b = a % 10;
+  if (a > 10 && a < 20) return forms[2];
+  if (b > 1 && b < 5) return forms[1];
+  if (b === 1) return forms[0];
+  return forms[2];
+}
+async function api(path, opts) {
+  const r = await fetch(path, opts);
+  let j = {};
+  try { j = await r.json(); } catch (e) {}
+  if (!r.ok) throw new Error(j.error || `HTTP ${r.status}`);
+  return j;
+}
+function status(html, progress) {
+  const el = $("#status");
+  if (progress === undefined) { el.innerHTML = html || ""; return; }
+  const bar = progress == null ? '<span class="bar indet"><i></i></span>'
+    : `<span class="bar"><i style="width:${Math.round(progress * 100)}%"></i></span>`;
+  el.innerHTML = bar + `<span>${html}</span>`;
+}
+
+/* ---------- итоги в шапке */
+async function loadSummary() {
+  try {
+    const s = await api("/api/summary");
+    S.busy = s.busy;
+    const parts = [];
+    const r = s.reference;
+    if (r && r.pos != null) {
+      parts.push(`<span class="stat">Эталон: найдено <b>${r.tp} из ${r.pos}</b></span>`);
+      parts.push(`<span class="stat">ложных <b>${r.fp}</b> (${num(r.fp_per_hour, 1)} в час)</span>`);
+      parts.push(`<span class="stat">precision <b>${num(r.precision)}</b>, recall <b>${num(r.recall)}</b>, F1 <b>${num(r.f1)}</b></span>`);
+    }
+    const h = s.hidden;
+    parts.push(h ? `<span class="stat">Скрытый набор: <b>${h.clips}</b> ${plural(h.clips, ["ролик", "ролика", "роликов"])}, <b>${h.events}</b> ${plural(h.events, ["событие", "события", "событий"])}, ${num(h.video_min, 1)} мин видео</span>`
+                 : `<span class="stat">Скрытый набор: ещё не прогнан</span>`);
+    if (s.thresholds && s.thresholds.enter != null) parts.push(`<span class="stat">вход ${num(s.thresholds.enter)}, выход ${num(s.thresholds.exit)}</span>`);
+    if (s.tag) parts.push(`<span class="pill">${esc(s.tag)}</span>`);
+    if (s.busy) parts.push(`<span class="pill warn">идёт прогон скрытого набора</span>`);
+    $("#stats").innerHTML = parts.join("");
+    updateButtons();
+  } catch (e) { $("#stats").innerHTML = `<span class="muted">итоги недоступны: ${esc(e.message)}</span>`; }
+}
+
+/* ---------- библиотека */
+function itemText(it) {
+  const bits = [];
+  if (it.label) bits.push({ POSITIVE: "позитив", NEGATIVE: "негатив", IGNORE: "IGNORE" }[it.label] || it.label);
+  if (it.duration) bits.push(tc(it.duration));
+  if (it.processed) bits.push(it.n_events != null ? `событий ${it.n_events}` : "обработан");
+  else if (it.official_events != null) bits.push(`в прогоне событий ${it.official_events}`);
+  else bits.push("не обработан");
+  return `${it.name}  (${bits.join(", ")})`;
+}
+async function loadVideos(selectKey) {
+  const { items } = await api("/api/videos");
+  S.items = items;
+  const sel = $("#clip");
+  sel.innerHTML = "";
+  if (!items.length) {
+    sel.innerHTML = '<option value="">Роликов нет: загрузите файл</option>';
+  }
+  const groups = {};
+  for (const it of items) (groups[it.group_title] ||= []).push(it);
+  for (const [title, list] of Object.entries(groups)) {
+    const og = document.createElement("optgroup");
+    og.label = title;
+    for (const it of list) {
+      const o = document.createElement("option");
+      o.value = it.key; o.textContent = itemText(it);
+      og.appendChild(o);
+    }
+    sel.appendChild(og);
+  }
+  const want = selectKey || S.key || load("viewer.key");
+  if (want && items.some((i) => i.key === want)) sel.value = want;
+  else if (items.length) sel.value = items[0].key;
+  if (sel.value && sel.value !== S.key) await select(sel.value);
+  else updateButtons();
+}
+function curItem() { return S.items.find((i) => i.key === S.key); }
+function updateButtons() {
+  const it = curItem();
+  const running = S.job && (S.job.status === "queued" || S.job.status === "running");
+  const b = $("#processBtn");
+  b.disabled = !it || running || S.busy;
+  b.textContent = it && it.processed ? "Обработать заново" : "Обработать ролик";
+  b.title = S.busy ? "Идёт прогон скрытого набора — обработка подождёт" : "";
+}
+
+/* ---------- выбор ролика и результат */
+async function select(key) {
+  S.key = key; store("viewer.key", key);
+  updateButtons();
+  const res = await api(`/api/result?key=${encodeURIComponent(key)}`);
+  if (res.processed === false) { showEmpty(res.item); return; }
+  S.res = res;
+  render();
+}
+function showEmpty(item) {
+  S.res = null;
+  const v = $("#video"); v.pause(); v.removeAttribute("src"); v.load(); v.classList.add("hidden");
+  const e = $("#empty"); e.classList.remove("hidden");
+  const dur = item && item.duration ? `, ${tc(item.duration)}` : "";
+  e.innerHTML = item ? `<b>${esc(item.name)}${dur}</b>ролик ещё не обработан — нажмите «Обработать ролик». Если ролик уже прогоняли, поза и ответы VLM возьмутся из кэша и останется только видео с отметками.`
+    : "<b>Выберите ролик или перетащите файл сюда</b>события появятся здесь";
+  for (const id of ["#events", "#verdict", "#vlm", "#timing", "#rules", "#cycles"]) $(id).innerHTML = "—";
+  $("#events").textContent = "Событий пока нет";
+  $("#links").innerHTML = ""; $("#chips").innerHTML = ""; $("#chart").innerHTML = "";
+  $("#evTitle").textContent = "События"; $("#evNote").textContent = ""; $("#chartTitle").textContent = "След жеста";
+  $("#cycSummary").textContent = "Циклы и кандидаты";
+  $("#chartCard").classList.add("hidden"); $("#cycCard").classList.add("hidden"); $("#tip").style.display = "none";
+}
+function render() {
+  const r = S.res;
+  $("#empty").classList.add("hidden");
+  $("#chartCard").classList.remove("hidden"); $("#cycCard").classList.remove("hidden");
+  const v = $("#video");
+  v.classList.remove("hidden");
+  if (v.getAttribute("src") !== r.media) { v.setAttribute("src", r.media); v.load(); }
+  // трек для графика: с событием, иначе с циклами
+  const ids = r.tracks.map((t) => t.track_id);
+  if (!ids.includes(S.track)) S.track = ids.length ? ids[0] : null;
+  renderEvents(); renderVerdict(); renderVlm(); renderTiming(); renderCycles(); renderRules(); renderChips(); drawChart();
+}
+
+function renderEvents() {
+  const r = S.res, list = r.events;
+  $("#evTitle").textContent = `События: ${list.length}`;
+  $("#evNote").textContent = r.official_events != null ? `в прогоне: ${r.official_events}` : "";
+  if (!list.length) { $("#events").innerHTML = '<div class="muted">Событий нет: жест «рука — рот» не сложился в правило.</div>'; return; }
+  $("#events").innerHTML = list.map((e, i) => {
+    const n = e.n_cycles ?? (e.cycles ? e.cycles.length : null);
+    const cyc = n != null ? `${n} ${plural(n, ["цикл", "цикла", "циклов"])}` : "";
+    const vlm = e.has_object ? "VLM: сигарета видна" : "VLM: сигарету не увидела — сработало правило двух циклов";
+    return `<button class="event" data-i="${i}" data-t="${e.start_sec}" data-tid="${e.person_track_id}">
+      <div class="ev-top"><span>${tc(e.start_sec)}–${tc(e.end_sec)}</span><span>ID ${e.person_track_id}</span></div>
+      <div class="ev-sub">${cyc}, уверенность ${num(e.confidence)}${e.median_height ? `, рост ${Math.round(e.median_height)} px` : ""}</div>
+      <div class="ev-sub">${vlm}</div></button>`;
+  }).join("");
+  for (const b of document.querySelectorAll(".event")) b.addEventListener("click", () => {
+    const tid = +b.dataset.tid;
+    if (S.res.tracks.some((t) => t.track_id === tid)) { S.track = tid; renderChips(); drawChart(); }
+    seek(+b.dataset.t - 0.5, true);
+  });
+}
+
+function renderVerdict() {
+  const r = S.res, n = r.events.length;
+  const label = r.label || S.labelGuess[r.key] || null;
+  let html = "";
+  if (!r.label) {
+    html += `<div class="small muted">Разметки нет. Что на ролике?</div><div class="seg" id="seg">
+      ${["POSITIVE", "NEGATIVE", ""].map((l) => `<button data-l="${l}" class="${(label || "") === l ? "on" : ""}">${{ POSITIVE: "курение", NEGATIVE: "не курение", "": "не знаю" }[l]}</button>`).join("")}</div>`;
+  } else {
+    html += `<div class="small muted">Разметка: ${{ POSITIVE: "позитив", NEGATIVE: "негатив", IGNORE: "IGNORE" }[r.label] || r.label}</div>`;
+  }
+  if (label === "POSITIVE") {
+    html += n ? `<div class="verdict">Найден: ${n} ${plural(n, ["событие", "события", "событий"])}</div><div class="small muted">для метрик по роликам это TP</div>`
+              : `<div class="verdict miss">Пропущен</div><div class="small muted">для метрик по роликам это FN</div>`;
+  } else if (label === "NEGATIVE") {
+    html += n ? `<div class="verdict bad">Ложных тревог: ${n}</div><div class="small muted">каждое событие в негативном ролике — FP</div>`
+              : `<div class="verdict">Ложных тревог нет</div>`;
+  } else if (label === "IGNORE") {
+    html += `<div class="verdict">Не оценивается</div><div class="small muted">ролик исключён из метрик</div>`;
+  } else {
+    html += `<div class="verdict">${n} ${plural(n, ["событие", "события", "событий"])}</div>`;
+  }
+  const cyc = r.cycles.length, smoke = r.cycles.filter((c) => c.verdict === "smoke").length,
+        veto = r.cycles.filter((c) => c.verdict === "veto").length;
+  html += `<dl class="kv small" style="margin-top:10px">
+    <dt>Людей в кадре</dt><dd>${r.n_tracks}</dd>
+    <dt>Циклов</dt><dd>${cyc}${cyc ? ` (с сигаретой ${smoke}, вето ${veto})` : ""}</dd>
+    <dt>Отброшено</dt><dd>${r.rejected.length} ${plural(r.rejected.length, ["кандидат", "кандидата", "кандидатов"])}</dd>
+    ${r.dropped_events.length ? `<dt>Снято событий</dt><dd>${r.dropped_events.map((d) => esc(d.reason)).join("; ")}</dd>` : ""}
+  </dl>`;
+  $("#verdict").innerHTML = html;
+  const seg = $("#seg");
+  if (seg) for (const b of seg.querySelectorAll("button")) b.addEventListener("click", () => { S.labelGuess[r.key] = b.dataset.l || null; renderVerdict(); });
+}
+
+function renderVlm() {
+  const ver = S.res.verification || {};
+  const labels = ver.labels || {};
+  const rows = Object.entries(labels).sort((a, b) => b[1] - a[1]);
+  if (!rows.length) { $("#vlm").innerHTML = `<div class="muted">${ver.vlm_used ? "Кадров с рукой у лица не было" : "VLM не запускалась"}</div>`; return; }
+  const max = Math.max(...rows.map((r) => r[1]));
+  $("#vlm").innerHTML = `<div class="small muted" style="margin-bottom:6px">${ver.n_crops} ${plural(ver.n_crops, ["кадр", "кадра", "кадров"])} с рукой у лица; красное — прямой признак, янтарь — вето</div>
+    <div class="hist">${rows.map(([k, n]) => `<span>${esc(RU[k] || k)}</span><span class="track"><i class="${SMOKE.has(k) ? "smoke" : VETO.has(k) ? "veto" : ""}" style="width:${(100 * n / max).toFixed(1)}%"></i></span><span class="n">${n}</span>`).join("")}</div>`;
+}
+
+function renderTiming() {
+  const t = S.res.timing || {}, v = S.res.video || {};
+  const dur = +t.duration_s || v.duration_s;
+  const cache = String(t.from_cache) === "True" ? " (поза из кэша)" : "";
+  $("#timing").innerHTML = `<dl class="kv small">
+    <dt>Видео</dt><dd>${num(dur, 1)} с, ${v.width || "?"}×${v.height || "?"}, ${num(v.fps, 0)} к/с</dd>
+    <dt>Обработка</dt><dd>${num(t.processing_s, 1)} с, ${num(t.sec_per_min, 0)} с на минуту видео</dd>
+    <dt>Поза и трекинг</dt><dd>${num(t.pose_s, 1)} с${cache}</dd>
+    <dt>Проверка VLM</dt><dd>${num(t.verify_s, 1)} с</dd>
+    <dt>Видео с отметками</dt><dd>${num(t.render_s, 1)} с</dd>
+    <dt>Устройство</dt><dd>${esc(t.device || "—")}, ${esc(t.pose_model || "")}</dd>
+  </dl>`;
+  const d = S.res.downloads || {};
+  const names = { "events.csv": "Скачать события (CSV)", "events.json": "Скачать события (JSON)", "manifest.json": "Скачать manifest" };
+  $("#links").innerHTML = Object.entries(names).filter(([k]) => d[k]).map(([k, l]) => `<a href="${d[k]}">${l}</a>`).join("");
+}
+
+function renderRules() {
+  const r = S.res.rules || {};
+  const order = [["cycle", "Цикл"], ["event", "Событие"], ["merge", "Объединение"], ["veto", "Вето"], ["visibility", "Видимость"]];
+  const html = order.filter(([k]) => r[k]).map(([k, t]) => `<p style="margin:0 0 8px"><b style="color:var(--text);font-weight:600">${t}.</b> ${esc(r[k])}</p>`).join("");
+  const git = S.res.git || {};
+  $("#rules").innerHTML = (html || "—") + (S.res.config_hash ? `<p style="margin:0">Конфиг ${esc(S.res.config_hash)}${git.tag ? `, ${esc(git.tag)}` : ""}</p>` : "");
+}
+
+function cycleVerdict(c) {
+  if (c.verdict === "smoke") return '<span class="tag-smoke">сигарета</span>';
+  if (c.verdict === "veto") return `<span class="tag-veto">вето: ${esc((c.reason || "").replace("предмет: ", "").split(", ").map((x) => RU[x] || RU["obj:" + x] || x).join(", "))}</span>`;
+  return "без признака";
+}
+function votesText(v) {
+  const e = Object.entries(v || {}).sort((a, b) => b[1] - a[1]);
+  return e.length ? e.map(([k, n]) => `${esc(RU[k] || k)} ${n}`).join(", ") : "—";
+}
+function renderCycles() {
+  const r = S.res;
+  const rows = [...r.cycles].sort((a, b) => a.t_enter - b.t_enter);
+  const byReason = {};
+  for (const x of r.rejected) byReason[x.reason] = (byReason[x.reason] || 0) + 1;
+  $("#cycSummary").textContent = `Циклы и кандидаты: ${rows.length} ${plural(rows.length, ["цикл", "цикла", "циклов"])}, отброшено ${r.rejected.length}`;
+  let html = "";
+  if (rows.length) {
+    html += `<table class="cyc"><thead><tr><th>ID</th><th>пауза у рта</th><th>длит.</th><th>мин. d</th><th>проверка</th><th>ответы VLM</th></tr></thead><tbody>
+      ${rows.map((c) => `<tr class="click" data-t="${c.t_start}" data-tid="${c.track_id}"><td>${c.track_id}</td><td>${tc(c.t_enter, true)}–${tc(c.t_exit, true)}</td><td>${num(c.pause_s, 1)} с</td><td>${num(c.d_min)}</td><td>${cycleVerdict(c)}</td><td>${votesText(c.votes)}</td></tr>`).join("")}
+    </tbody></table>`;
+  } else html += '<div class="muted" style="margin-top:8px">Циклов нет.</div>';
+  const reasons = Object.entries(byReason);
+  if (reasons.length) html += `<div class="small muted" style="margin-top:10px">Отброшенные кандидаты: ${reasons.map(([k, n]) => `${esc(REASON[k] || k)} — ${n}`).join("; ")}.</div>`;
+  $("#cycles").innerHTML = html;
+  for (const tr of document.querySelectorAll("table.cyc tr.click")) tr.addEventListener("click", () => {
+    const tid = +tr.dataset.tid;
+    if (S.res.tracks.some((t) => t.track_id === tid)) { S.track = tid; renderChips(); drawChart(); }
+    seek(+tr.dataset.t, true);
+  });
+}
+
+/* ---------- график «след жеста» */
+function renderChips() {
+  const r = S.res;
+  const evIds = new Set(r.events.map((e) => e.person_track_id));
+  $("#chips").innerHTML = r.tracks.map((t) => `<button class="chip ${t.track_id === S.track ? "on" : ""}" data-tid="${t.track_id}">ID ${t.track_id}${evIds.has(t.track_id) ? " — событие" : ""}</button>`).join("");
+  for (const b of document.querySelectorAll(".chip")) b.addEventListener("click", () => { S.track = +b.dataset.tid; renderChips(); drawChart(); });
+  $("#chartTitle").textContent = S.track != null ? `След жеста: ID ${S.track}` : "След жеста";
+}
+function el(name, attrs, text) {
+  const e = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+  if (text != null) e.textContent = text;
+  return e;
+}
+let G = null;   // геометрия графика для курсора
+function drawChart() {
+  const svg = $("#chart");
+  svg.innerHTML = "";
+  $("#tip").style.display = "none";
+  const r = S.res;
+  if (!r) return;
+  const tr = r.tracks.find((t) => t.track_id === S.track);
+  const W = svg.clientWidth || 800, H = 210;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const pad = { l: 34, r: 74, t: 34, b: 22 };
+  const lastT = tr ? tr.t.filter((x) => x != null).slice(-1)[0] : 0;
+  const dur = Math.max(1, (r.video && r.video.duration_s) || +r.timing.duration_s || lastT || 1);
+  const ymax = 0.8;
+  const x = (t) => pad.l + (t / dur) * (W - pad.l - pad.r);
+  const y = (d) => pad.t + (1 - Math.min(Math.max(d, 0), ymax) / ymax) * (H - pad.t - pad.b);
+  G = { x, pad, W, H, dur, tr };
+  // сетка и подписи
+  for (const v of [0, 0.2, 0.4, 0.6, 0.8]) {
+    svg.appendChild(el("line", { x1: pad.l, x2: W - pad.r, y1: y(v), y2: y(v), stroke: "#33424C", "stroke-width": 1 }));
+    svg.appendChild(el("text", { x: pad.l - 6, y: y(v) + 4, "text-anchor": "end", fill: "#9FB0BA", "font-size": 11 }, num(v, 1)));
+  }
+  const step = [5, 10, 15, 30, 60, 120, 300].find((s) => dur / s <= 10) || 600;
+  for (let t = 0; t <= dur + 1e-6; t += step) {
+    svg.appendChild(el("text", { x: x(t), y: H - 6, "text-anchor": "middle", fill: "#9FB0BA", "font-size": 11 }, tc(t)));
+  }
+  if (!tr) {
+    svg.appendChild(el("text", { x: W / 2, y: H / 2, "text-anchor": "middle", fill: "#9FB0BA", "font-size": 13 }, "Нет людей с рукой у лица"));
+    return;
+  }
+  // паузы у рта (циклы выбранного человека)
+  const cyc = r.cycles.filter((c) => c.track_id === S.track).sort((a, b) => a.t_enter - b.t_enter);
+  cyc.forEach((c, i) => {
+    const x0 = x(c.t_enter), x1 = Math.max(x(c.t_exit), x0 + 2);
+    svg.appendChild(el("rect", { x: x0, y: pad.t, width: x1 - x0, height: H - pad.t - pad.b, fill: "rgba(242,181,68,0.22)" }));
+    const lab = x1 - x0 >= 46 ? `цикл ${i + 1}` : `${i + 1}`;
+    svg.appendChild(el("text", { x: x0 + 3, y: pad.t + 13, fill: "#E8EEF1", "font-size": 11, "font-weight": 600 }, lab));
+  });
+  // события — полоса над графиком
+  for (const e of r.events.filter((e) => e.person_track_id === S.track)) {
+    const x0 = x(e.start_sec), x1 = Math.max(x(e.end_sec), x0 + 3);
+    svg.appendChild(el("rect", { x: x0, y: 16, width: x1 - x0, height: 6, rx: 3, fill: "#E5484D" }));
+    const label = el("text", { x: x0, y: 11, fill: "#E8EEF1", "font-size": 11, "font-weight": 600 }, `событие ${tc(e.start_sec)}–${tc(e.end_sec)}`);
+    svg.appendChild(label);
+  }
+  // пороги
+  const th = r.thresholds || {};
+  for (const [v, name] of [[th.enter, "вход"], [th.exit, "выход"]]) {
+    if (v == null) continue;
+    svg.appendChild(el("line", { x1: pad.l, x2: W - pad.r, y1: y(v), y2: y(v), stroke: "#9FB0BA", "stroke-dasharray": "4 4", "stroke-width": 1 }));
+    svg.appendChild(el("text", { x: W - pad.r + 6, y: y(v) + 4, fill: "#9FB0BA", "font-size": 11 }, `${name} ${num(v)}`));
+  }
+  // сигнал
+  let d = "", pen = false;
+  for (let i = 0; i < tr.t.length; i++) {
+    const t = tr.t[i], v = tr.d[i];
+    if (t == null || v == null) { pen = false; continue; }
+    d += `${pen ? "L" : "M"}${x(t).toFixed(1)},${y(v).toFixed(1)}`;
+    pen = true;
+  }
+  svg.appendChild(el("path", { d, fill: "none", stroke: "#E8EEF1", "stroke-width": 1.6, "stroke-linejoin": "round" }));
+  // текущий момент
+  svg.appendChild(el("line", { id: "playhead", x1: pad.l, x2: pad.l, y1: pad.t - 4, y2: H - pad.b, stroke: "#E8EEF1", "stroke-width": 1.5 }));
+  updatePlayhead();
+}
+function updatePlayhead() {
+  const p = document.getElementById("playhead");
+  const v = $("#video");
+  if (!p || !G) return;
+  const t = v.currentTime || 0;
+  const xx = G.x(Math.min(t, G.dur));
+  p.setAttribute("x1", xx); p.setAttribute("x2", xx);
+  for (const b of document.querySelectorAll(".event")) {
+    const e = S.res && S.res.events[+b.dataset.i];
+    b.classList.toggle("active", !!e && t >= e.start_sec && t <= e.end_sec);
+  }
+}
+function chartTime(ev) {
+  const svg = $("#chart"), rect = svg.getBoundingClientRect();
+  const px = (ev.clientX - rect.left) * (G.W / rect.width);
+  return Math.min(G.dur, Math.max(0, ((px - G.pad.l) / (G.W - G.pad.l - G.pad.r)) * G.dur));
+}
+function nearest(tr, t) {
+  let lo = 0, hi = tr.t.length - 1;
+  while (lo < hi) { const m = (lo + hi) >> 1; if ((tr.t[m] ?? -1) < t) lo = m + 1; else hi = m; }
+  return lo;
+}
+$("#chart").addEventListener("mousemove", (ev) => {
+  if (!G || !G.tr || !S.res) { $("#tip").style.display = "none"; return; }
+  const t = chartTime(ev), i = nearest(G.tr, t), dv = G.tr.d[i];
+  const th = (S.res.thresholds || {});
+  const c = S.res.cycles.find((c) => c.track_id === S.track && t >= c.t_enter && t <= c.t_exit);
+  const state = c ? "пауза у рта" : dv == null ? "точек нет" : dv < (th.enter ?? 0.24) ? "рука у рта" : dv < (th.exit ?? 0.4) ? "рука у лица" : "рука далеко";
+  const tip = $("#tip");
+  tip.style.display = "block";
+  tip.style.left = ev.clientX + 12 + "px"; tip.style.top = ev.clientY + 12 + "px";
+  tip.textContent = `${tc(t, true)}   d = ${num(dv)}   ${state}`;
+});
+$("#chart").addEventListener("mouseleave", () => { $("#tip").style.display = "none"; });
+$("#chart").addEventListener("click", (ev) => { if (G) seek(chartTime(ev), false); });
+
+function seek(t, play) {
+  const v = $("#video");
+  if (!v.getAttribute("src")) return;
+  v.currentTime = Math.max(0, t);
+  if (play) v.play().catch(() => {});
+  updatePlayhead();
+}
+const video = $("#video");
+video.addEventListener("timeupdate", updatePlayhead);
+video.addEventListener("seeked", updatePlayhead);
+let raf = null;
+video.addEventListener("play", () => { const f = () => { updatePlayhead(); raf = requestAnimationFrame(f); }; raf = requestAnimationFrame(f); });
+video.addEventListener("pause", () => { if (raf) cancelAnimationFrame(raf); raf = null; });
+window.addEventListener("resize", () => { if (S.res) drawChart(); });
+
+/* ---------- обработка и загрузка */
+async function process() {
+  if (!S.key) return;
+  try {
+    const job = await api("/api/process", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ key: S.key }) });
+    watch(job);
+  } catch (e) { status(`<span style="color:var(--amber)">${esc(e.message)}</span>`); }
+}
+function watch(job) {
+  S.job = job; updateButtons();
+  if (S.poll) clearInterval(S.poll);
+  const tick = async () => {
+    try {
+      const j = await api(`/api/job?id=${S.job.id}`);
+      S.job = j;
+      if (j.status === "queued") status(j.position ? `В очереди: ${j.position}` : "В очереди", null);
+      else if (j.status === "running") status(`${esc(j.stage || "Обработка")}, ${Math.round(j.elapsed)} с`, j.progress);
+      else {
+        clearInterval(S.poll); S.poll = null; updateButtons();
+        if (j.status === "done") {
+          status(`Готово за ${Math.round(j.elapsed)} с`);
+          await loadVideos(j.key);
+          if (S.key === j.key) await select(j.key);
+        } else {
+          status(`<span style="color:var(--carmine)">${esc(j.stage || "Ошибка")}</span> <details style="display:inline-block"><summary class="small">журнал</summary><div class="log">${esc((j.log || []).join("\n"))}</div></details>`);
+        }
+      }
+    } catch (e) { status(`<span style="color:var(--amber)">${esc(e.message)}</span>`); }
+  };
+  tick(); S.poll = setInterval(tick, 1000);
+}
+function upload(file) {
+  if (!file) return;
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", `/api/upload?name=${encodeURIComponent(file.name)}`);
+  xhr.upload.onprogress = (e) => { if (e.lengthComputable) status(`Загрузка ${esc(file.name)}: ${Math.round(100 * e.loaded / e.total)}%`, e.loaded / e.total); };
+  xhr.onload = async () => {
+    let j = {};
+    try { j = JSON.parse(xhr.responseText); } catch (e) {}
+    if (xhr.status >= 400) { status(`<span style="color:var(--carmine)">${esc(j.error || "Ошибка загрузки")}</span>`); return; }
+    await loadVideos(j.key);
+    if (j.job) watch(j.job);
+    else if (j.busy) status('<span style="color:var(--amber)">Загружено. Идёт прогон скрытого набора — обработку запустите позже.</span>');
+    else status("Загружено");
+  };
+  xhr.onerror = () => status('<span style="color:var(--carmine)">Загрузка не удалась</span>');
+  status(`Загрузка ${esc(file.name)}…`, 0);
+  xhr.send(file);
+}
+$("#clip").addEventListener("change", (e) => select(e.target.value).catch((err) => status(esc(err.message))));
+$("#processBtn").addEventListener("click", process);
+$("#uploadBtn").addEventListener("click", () => $("#file").click());
+$("#file").addEventListener("change", (e) => { upload(e.target.files[0]); e.target.value = ""; });
+const drop = $("#player");
+for (const t of ["dragenter", "dragover"]) document.addEventListener(t, (e) => { e.preventDefault(); drop.classList.add("drop"); });
+for (const t of ["dragleave", "drop"]) document.addEventListener(t, (e) => { e.preventDefault(); if (t === "drop" || e.target === document.documentElement) drop.classList.remove("drop"); });
+document.addEventListener("drop", (e) => { drop.classList.remove("drop"); const f = e.dataTransfer && e.dataTransfer.files[0]; if (f) upload(f); });
+
+(async function init() {
+  await loadSummary();
+  try { await loadVideos(); } catch (e) { status(esc(e.message)); }
+  try {   // если задание уже идёт (страницу перезагрузили) — показываем его
+    const s = await api("/api/summary");
+    if (s.jobs && s.jobs.length) watch(s.jobs[0]);
+  } catch (e) {}
+  setInterval(loadSummary, 8000);
+})();
+</script>
+</body>
+</html>
