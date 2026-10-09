@@ -1,0 +1,286 @@
+prompt,clip_id,label,track_id,t,answer,raw
+list_neutral,1,POSITIVE,1,10.7,vape,vape
+list_neutral,1,POSITIVE,1,38.63,hand,nothing
+list_neutral,1,POSITIVE,1,56.83,cigarette,cigarette
+list_neutral,1,POSITIVE,1,57.87,cigarette,cigarette
+list_neutral,1,POSITIVE,1,64.4,cigarette,cigarette
+list_neutral,1_drink,NEGATIVE,1,15.61,hand,nothing
+list_neutral,1_drink,NEGATIVE,1,24.58,cigarette,cigarette
+list_neutral,1_drink,NEGATIVE,1,35.42,vape,vape
+list_neutral,1_drink,NEGATIVE,1,37.56,hand,nothing
+list_neutral,1_drink,NEGATIVE,1,49.63,hand,nothing
+list_neutral,2,POSITIVE,7,7.67,hand,nothing
+list_neutral,2,POSITIVE,18,1.67,cigarette,cigarette
+list_neutral,2025_10_22_12_38_57,POSITIVE,1,1.83,cigarette,cigarette
+list_neutral,2025_10_22_12_38_57,POSITIVE,1,65.57,cigarette,cigarette
+list_neutral,2025_10_22_12_38_57,POSITIVE,14,208.77,vape,vape
+list_neutral,2025_10_22_12_38_57,POSITIVE,14,305.36,phone,phone
+list_neutral,2025_10_22_12_38_57,POSITIVE,14,565.87,vape,vape
+list_neutral,2025_11_06_08_13_58,NEGATIVE,1,35.34,hand,glove
+list_neutral,2025_11_06_08_13_58,NEGATIVE,1,46.58,hand,nothing
+list_neutral,2025_11_06_08_13_58,NEGATIVE,1,49.18,hand,nothing
+list_neutral,2025_11_06_08_13_58,NEGATIVE,1,51.76,cigarette,cigarette
+list_neutral,2025_11_06_08_13_58,NEGATIVE,1,78.48,hand,glove
+list_neutral,2025_11_06_08_15_57,NEGATIVE,1,1.98,cigarette,cigarette
+list_neutral,2025_11_06_08_19_11,NEGATIVE,1,11.3,hand,nothing
+list_neutral,2025_11_06_08_19_11,NEGATIVE,1,29.1,hand,nothing
+list_neutral,2025_11_06_08_19_11,NEGATIVE,1,44.53,hand,glove
+list_neutral,2025_11_06_08_19_11,NEGATIVE,1,62.27,bottle,bottle
+list_neutral,2025_11_06_08_19_11,NEGATIVE,2,100.67,hand,glove
+list_neutral,2025_11_06_08_23_06,NEGATIVE,1,24.53,hand,glove
+list_neutral,2025_11_06_08_33_31,NEGATIVE,1,2.68,hand,glove
+list_neutral,2025_11_06_08_33_31,NEGATIVE,1,15.72,hand,nothing
+list_neutral,2025_11_06_08_33_31,NEGATIVE,1,28.14,hand,glove
+list_neutral,2025_11_06_08_33_31,NEGATIVE,1,41.36,hand,glove
+list_neutral,2025_11_06_08_33_31,NEGATIVE,1,71.3,hand,glove
+list_neutral,2025_11_06_08_35_37,NEGATIVE,1,2.34,hand,glove
+list_neutral,2025_11_06_08_35_37,NEGATIVE,1,27.9,hand,glove
+list_neutral,2025_11_06_08_35_37,NEGATIVE,1,31.72,hand,glove
+list_neutral,2025_11_06_08_35_37,NEGATIVE,1,74.4,hand,glove
+list_neutral,2025_11_06_08_35_37,NEGATIVE,7,101.98,hand,nothing
+list_neutral,2025_12_08_13_02_26,POSITIVE,2,0.78,cigarette,cigarette
+list_neutral,2025_12_08_13_02_26,POSITIVE,156,286.58,hand,nothing
+list_neutral,2025_12_08_13_02_26,POSITIVE,166,371.22,hand,nothing
+list_neutral,2025_12_08_13_02_26,POSITIVE,175,412.34,cigarette,cigarette
+list_neutral,2025_12_08_13_02_26,POSITIVE,175,477.78,cigarette,cigarette
+list_neutral,3,POSITIVE,2,15.77,cigarette,cigarette
+list_neutral,3,POSITIVE,2,60.17,cigarette,cigarette
+list_neutral,3,POSITIVE,2,121.27,hand,nothing
+list_neutral,3,POSITIVE,75,86.13,cigarette,cigarette
+list_neutral,4,POSITIVE,4,2.83,vape,vape
+list_neutral,4,POSITIVE,6,6.47,hand,nothing
+list_neutral,4,POSITIVE,12,3.6,hand,nothing
+list_neutral,4,POSITIVE,16,6.4,hand,nothing
+list_neutral,_88,POSITIVE,1,2.67,hand,nothing
+list_neutral,drinking_Jar,NEGATIVE,2,0.5,vape,vape
+list_neutral,drinking_Jar,NEGATIVE,4,14.13,vape,vape
+list_neutral,drinking_Jar,NEGATIVE,4,54.97,vape,vape
+list_neutral,drinking_Jar,NEGATIVE,4,91.7,cigarette,cigarette
+list_neutral,drinking_Jar,NEGATIVE,30,76.93,cigarette,cigarette
+list_neutral,sm_1,POSITIVE,1,2.73,hand,nothing
+list_neutral,sm_1,POSITIVE,19,249.88,vape,vape
+list_neutral,sm_1,POSITIVE,20,123.7,cigarette,cigarette
+list_neutral,sm_1,POSITIVE,20,220.13,vape,vape
+list_neutral,sm_1,POSITIVE,67,376.23,vape,vape
+list_neutral,sm_2,POSITIVE,1,11.13,hand,nothing
+list_neutral,sm_2,POSITIVE,1,19.3,cigarette,cigarette
+list_neutral,sm_3,POSITIVE,1,83.28,hand,nothing
+list_neutral,sm_3,POSITIVE,4,32.02,cigarette,cigarette
+list_neutral,sm_3,POSITIVE,4,48.8,cigarette,cigarette
+list_neutral,sm_3,POSITIVE,4,61.18,vape,vape
+list_neutral,sm_3,POSITIVE,6,109.72,vape,vape
+list_neutral,sm_4,POSITIVE,1,0.9,cigarette,cigarette
+list_neutral,sm_4,POSITIVE,1,2.97,cigarette,cigarette
+list_neutral,sm_4,POSITIVE,1,5.77,cigarette,cigarette
+list_neutral,sm_6,POSITIVE,1,4.87,cigarette,cigarette
+list_neutral,sm_6,POSITIVE,1,11.83,hand,nothing
+list_neutral,sm_6,POSITIVE,1,17.13,hand,nothing
+list_neutral,sm_6,POSITIVE,1,21.07,hand,nothing
+list_neutral,sm_9,POSITIVE,1,5.4,cigarette,cigarette
+list_neutral,sm_y_2,POSITIVE,3,4.87,hand,nothing
+list_neutral,sm_y_2,POSITIVE,3,8.9,hand,nothing
+list_neutral,smoking_Jar (1),POSITIVE,15,10.67,cigarette,cigarette
+list_neutral,smoking_Jar (2),POSITIVE,4,5.8,cigarette,cigarette
+list_neutral,smoking_noyabrsk_2,NEGATIVE,1,40.6,cigarette,cigarette
+list_neutral,smoking_noyabrsk_2,NEGATIVE,1,76.02,cigarette,cigarette
+list_neutral,smoking_noyabrsk_2,NEGATIVE,1,116.92,toothpick,toothpick
+list_neutral,smoking_noyabrsk_2,NEGATIVE,1,132.04,cigarette,cigarette
+list_neutral,smoking_noyabrsk_2,NEGATIVE,1,231.19,cigarette,cigarette
+list_neutral,smoking_noyabrsk_3,NEGATIVE,1,5.49,cigarette,cigarette
+list_neutral,smoking_noyabrsk_3,NEGATIVE,1,16.58,vape,vape
+list_neutral,smoking_noyabrsk_3,NEGATIVE,1,22.83,cigarette,cigarette
+list_neutral,smoking_noyabrsk_3,NEGATIVE,1,219.15,cigarette,cigarette
+list_neutral,smoking_noyabrsk_3,NEGATIVE,1,254.86,cigarette,cigarette
+list_neutral,распитие (2),NEGATIVE,1,2.57,hand,nothing
+list_neutral,распитие (2),NEGATIVE,10,23.07,vape,vape
+list_neutral,распитие (2),NEGATIVE,10,25.43,hand,nothing
+describe,1,POSITIVE,1,10.7,hand,empty hand
+describe,1,POSITIVE,1,38.63,hand,empty hand
+describe,1,POSITIVE,1,56.83,hand,empty hand
+describe,1,POSITIVE,1,57.87,hand,empty hand
+describe,1,POSITIVE,1,64.4,hand,empty hand
+describe,1_drink,NEGATIVE,1,15.61,hand,empty hand
+describe,1_drink,NEGATIVE,1,24.58,hand,empty hand
+describe,1_drink,NEGATIVE,1,35.42,hand,empty hand
+describe,1_drink,NEGATIVE,1,37.56,hand,empty hand
+describe,1_drink,NEGATIVE,1,49.63,hand,empty hand
+describe,2,POSITIVE,7,7.67,hand,empty hand
+describe,2,POSITIVE,18,1.67,hand,empty hand
+describe,2025_10_22_12_38_57,POSITIVE,1,1.83,hand,empty hand
+describe,2025_10_22_12_38_57,POSITIVE,1,65.57,hand,empty hand
+describe,2025_10_22_12_38_57,POSITIVE,14,208.77,hand,empty hand
+describe,2025_10_22_12_38_57,POSITIVE,14,305.36,hand,empty hand
+describe,2025_10_22_12_38_57,POSITIVE,14,565.87,hand,empty hand
+describe,2025_11_06_08_13_58,NEGATIVE,1,35.34,hand,empty hand
+describe,2025_11_06_08_13_58,NEGATIVE,1,46.58,hand,empty hand
+describe,2025_11_06_08_13_58,NEGATIVE,1,49.18,hand,empty hand
+describe,2025_11_06_08_13_58,NEGATIVE,1,51.76,hand,empty hand
+describe,2025_11_06_08_13_58,NEGATIVE,1,78.48,hand,empty hand
+describe,2025_11_06_08_15_57,NEGATIVE,1,1.98,hand,empty hand
+describe,2025_11_06_08_19_11,NEGATIVE,1,11.3,hand,empty hand
+describe,2025_11_06_08_19_11,NEGATIVE,1,29.1,hand,empty hand
+describe,2025_11_06_08_19_11,NEGATIVE,1,44.53,hand,empty hand
+describe,2025_11_06_08_19_11,NEGATIVE,1,62.27,bottle,plastic bottle with pink liquid
+describe,2025_11_06_08_19_11,NEGATIVE,2,100.67,hand,empty hand
+describe,2025_11_06_08_23_06,NEGATIVE,1,24.53,hand,empty hand
+describe,2025_11_06_08_33_31,NEGATIVE,1,2.68,hand,empty hand
+describe,2025_11_06_08_33_31,NEGATIVE,1,15.72,hand,empty hand
+describe,2025_11_06_08_33_31,NEGATIVE,1,28.14,hand,empty hand
+describe,2025_11_06_08_33_31,NEGATIVE,1,41.36,hand,empty hand
+describe,2025_11_06_08_33_31,NEGATIVE,1,71.3,hand,empty hand
+describe,2025_11_06_08_35_37,NEGATIVE,1,2.34,hand,empty hand
+describe,2025_11_06_08_35_37,NEGATIVE,1,27.9,hand,empty hand
+describe,2025_11_06_08_35_37,NEGATIVE,1,31.72,hand,empty hand
+describe,2025_11_06_08_35_37,NEGATIVE,1,74.4,hand,empty hand
+describe,2025_11_06_08_35_37,NEGATIVE,7,101.98,hand,empty hand
+describe,2025_12_08_13_02_26,POSITIVE,2,0.78,hand,empty hand
+describe,2025_12_08_13_02_26,POSITIVE,156,286.58,hand,empty hand
+describe,2025_12_08_13_02_26,POSITIVE,166,371.22,hand,empty hand
+describe,2025_12_08_13_02_26,POSITIVE,175,412.34,hand,empty hand
+describe,2025_12_08_13_02_26,POSITIVE,175,477.78,hand,empty hand
+describe,3,POSITIVE,2,15.77,hand,empty hand
+describe,3,POSITIVE,2,60.17,hand,empty hand
+describe,3,POSITIVE,2,121.27,hand,empty hand
+describe,3,POSITIVE,75,86.13,hand,empty hand
+describe,4,POSITIVE,4,2.83,hand,empty hand
+describe,4,POSITIVE,6,6.47,hand,empty hand
+describe,4,POSITIVE,12,3.6,hand,empty hand
+describe,4,POSITIVE,16,6.4,hand,empty hand
+describe,_88,POSITIVE,1,2.67,hand,empty hand
+describe,drinking_Jar,NEGATIVE,2,0.5,hand,empty hand
+describe,drinking_Jar,NEGATIVE,4,14.13,hand,empty hand
+describe,drinking_Jar,NEGATIVE,4,54.97,hand,empty hand
+describe,drinking_Jar,NEGATIVE,4,91.7,hand,empty hand
+describe,drinking_Jar,NEGATIVE,30,76.93,hand,empty hand
+describe,sm_1,POSITIVE,1,2.73,hand,empty hand
+describe,sm_1,POSITIVE,19,249.88,hand,empty hand
+describe,sm_1,POSITIVE,20,123.7,cigarette,cigarette or similar object
+describe,sm_1,POSITIVE,20,220.13,hand,empty hand
+describe,sm_1,POSITIVE,67,376.23,hand,empty hand
+describe,sm_2,POSITIVE,1,11.13,hand,empty hand
+describe,sm_2,POSITIVE,1,19.3,unclear,red bag handle
+describe,sm_3,POSITIVE,1,83.28,hand,empty hand
+describe,sm_3,POSITIVE,4,32.02,hand,empty hand
+describe,sm_3,POSITIVE,4,48.8,hand,empty hand
+describe,sm_3,POSITIVE,4,61.18,hand,empty hand
+describe,sm_3,POSITIVE,6,109.72,hand,empty hand
+describe,sm_4,POSITIVE,1,0.9,hand,empty hand
+describe,sm_4,POSITIVE,1,2.97,hand,empty hand
+describe,sm_4,POSITIVE,1,5.77,hand,empty hand
+describe,sm_6,POSITIVE,1,4.87,hand,empty hand
+describe,sm_6,POSITIVE,1,11.83,hand,empty hand
+describe,sm_6,POSITIVE,1,17.13,hand,empty hand
+describe,sm_6,POSITIVE,1,21.07,hand,empty hand
+describe,sm_9,POSITIVE,1,5.4,hand,empty hand
+describe,sm_y_2,POSITIVE,3,4.87,hand,empty hand
+describe,sm_y_2,POSITIVE,3,8.9,hand,empty hand
+describe,smoking_Jar (1),POSITIVE,15,10.67,hand,empty hand
+describe,smoking_Jar (2),POSITIVE,4,5.8,hand,empty hand
+describe,smoking_noyabrsk_2,NEGATIVE,1,40.6,hand,empty hand
+describe,smoking_noyabrsk_2,NEGATIVE,1,76.02,hand,empty hand
+describe,smoking_noyabrsk_2,NEGATIVE,1,116.92,hand,empty hand
+describe,smoking_noyabrsk_2,NEGATIVE,1,132.04,hand,empty hand
+describe,smoking_noyabrsk_2,NEGATIVE,1,231.19,hand,empty hand
+describe,smoking_noyabrsk_3,NEGATIVE,1,5.49,hand,empty hand
+describe,smoking_noyabrsk_3,NEGATIVE,1,16.58,hand,empty hand
+describe,smoking_noyabrsk_3,NEGATIVE,1,22.83,hand,empty hand
+describe,smoking_noyabrsk_3,NEGATIVE,1,219.15,hand,empty hand
+describe,smoking_noyabrsk_3,NEGATIVE,1,254.86,hand,empty hand
+describe,распитие (2),NEGATIVE,1,2.57,hand,empty hand
+describe,распитие (2),NEGATIVE,10,23.07,hand,red object near face
+describe,распитие (2),NEGATIVE,10,25.43,hand,empty hand
+yesno,1,POSITIVE,1,10.7,hand,no
+yesno,1,POSITIVE,1,38.63,hand,no
+yesno,1,POSITIVE,1,56.83,hand,no
+yesno,1,POSITIVE,1,57.87,hand,no
+yesno,1,POSITIVE,1,64.4,hand,no
+yesno,1_drink,NEGATIVE,1,15.61,hand,no
+yesno,1_drink,NEGATIVE,1,24.58,hand,no
+yesno,1_drink,NEGATIVE,1,35.42,hand,no
+yesno,1_drink,NEGATIVE,1,37.56,hand,no
+yesno,1_drink,NEGATIVE,1,49.63,hand,no
+yesno,2,POSITIVE,7,7.67,hand,no
+yesno,2,POSITIVE,18,1.67,hand,no
+yesno,2025_10_22_12_38_57,POSITIVE,1,1.83,hand,no
+yesno,2025_10_22_12_38_57,POSITIVE,1,65.57,hand,no
+yesno,2025_10_22_12_38_57,POSITIVE,14,208.77,hand,no
+yesno,2025_10_22_12_38_57,POSITIVE,14,305.36,hand,no
+yesno,2025_10_22_12_38_57,POSITIVE,14,565.87,hand,no
+yesno,2025_11_06_08_13_58,NEGATIVE,1,35.34,hand,no
+yesno,2025_11_06_08_13_58,NEGATIVE,1,46.58,hand,no
+yesno,2025_11_06_08_13_58,NEGATIVE,1,49.18,hand,no
+yesno,2025_11_06_08_13_58,NEGATIVE,1,51.76,cigarette,yes
+yesno,2025_11_06_08_13_58,NEGATIVE,1,78.48,hand,no
+yesno,2025_11_06_08_15_57,NEGATIVE,1,1.98,hand,no
+yesno,2025_11_06_08_19_11,NEGATIVE,1,11.3,hand,no
+yesno,2025_11_06_08_19_11,NEGATIVE,1,29.1,hand,no
+yesno,2025_11_06_08_19_11,NEGATIVE,1,44.53,hand,no
+yesno,2025_11_06_08_19_11,NEGATIVE,1,62.27,hand,no
+yesno,2025_11_06_08_19_11,NEGATIVE,2,100.67,hand,no
+yesno,2025_11_06_08_23_06,NEGATIVE,1,24.53,hand,no
+yesno,2025_11_06_08_33_31,NEGATIVE,1,2.68,hand,no
+yesno,2025_11_06_08_33_31,NEGATIVE,1,15.72,hand,no
+yesno,2025_11_06_08_33_31,NEGATIVE,1,28.14,hand,no
+yesno,2025_11_06_08_33_31,NEGATIVE,1,41.36,hand,no
+yesno,2025_11_06_08_33_31,NEGATIVE,1,71.3,hand,no
+yesno,2025_11_06_08_35_37,NEGATIVE,1,2.34,hand,no
+yesno,2025_11_06_08_35_37,NEGATIVE,1,27.9,hand,no
+yesno,2025_11_06_08_35_37,NEGATIVE,1,31.72,hand,no
+yesno,2025_11_06_08_35_37,NEGATIVE,1,74.4,hand,no
+yesno,2025_11_06_08_35_37,NEGATIVE,7,101.98,hand,no
+yesno,2025_12_08_13_02_26,POSITIVE,2,0.78,hand,no
+yesno,2025_12_08_13_02_26,POSITIVE,156,286.58,hand,no
+yesno,2025_12_08_13_02_26,POSITIVE,166,371.22,hand,no
+yesno,2025_12_08_13_02_26,POSITIVE,175,412.34,hand,no
+yesno,2025_12_08_13_02_26,POSITIVE,175,477.78,hand,no
+yesno,3,POSITIVE,2,15.77,hand,no
+yesno,3,POSITIVE,2,60.17,hand,no
+yesno,3,POSITIVE,2,121.27,hand,no
+yesno,3,POSITIVE,75,86.13,hand,no
+yesno,4,POSITIVE,4,2.83,hand,no
+yesno,4,POSITIVE,6,6.47,hand,no
+yesno,4,POSITIVE,12,3.6,hand,no
+yesno,4,POSITIVE,16,6.4,hand,no
+yesno,_88,POSITIVE,1,2.67,hand,no
+yesno,drinking_Jar,NEGATIVE,2,0.5,hand,no
+yesno,drinking_Jar,NEGATIVE,4,14.13,hand,no
+yesno,drinking_Jar,NEGATIVE,4,54.97,hand,no
+yesno,drinking_Jar,NEGATIVE,4,91.7,hand,no
+yesno,drinking_Jar,NEGATIVE,30,76.93,hand,no
+yesno,sm_1,POSITIVE,1,2.73,hand,no
+yesno,sm_1,POSITIVE,19,249.88,hand,no
+yesno,sm_1,POSITIVE,20,123.7,hand,no
+yesno,sm_1,POSITIVE,20,220.13,hand,no
+yesno,sm_1,POSITIVE,67,376.23,hand,no
+yesno,sm_2,POSITIVE,1,11.13,hand,no
+yesno,sm_2,POSITIVE,1,19.3,hand,no
+yesno,sm_3,POSITIVE,1,83.28,hand,no
+yesno,sm_3,POSITIVE,4,32.02,hand,no
+yesno,sm_3,POSITIVE,4,48.8,hand,no
+yesno,sm_3,POSITIVE,4,61.18,hand,no
+yesno,sm_3,POSITIVE,6,109.72,hand,no
+yesno,sm_4,POSITIVE,1,0.9,hand,no
+yesno,sm_4,POSITIVE,1,2.97,hand,no
+yesno,sm_4,POSITIVE,1,5.77,hand,no
+yesno,sm_6,POSITIVE,1,4.87,hand,no
+yesno,sm_6,POSITIVE,1,11.83,hand,no
+yesno,sm_6,POSITIVE,1,17.13,hand,no
+yesno,sm_6,POSITIVE,1,21.07,hand,no
+yesno,sm_9,POSITIVE,1,5.4,hand,no
+yesno,sm_y_2,POSITIVE,3,4.87,hand,no
+yesno,sm_y_2,POSITIVE,3,8.9,hand,no
+yesno,smoking_Jar (1),POSITIVE,15,10.67,hand,no
+yesno,smoking_Jar (2),POSITIVE,4,5.8,hand,no
+yesno,smoking_noyabrsk_2,NEGATIVE,1,40.6,hand,no
+yesno,smoking_noyabrsk_2,NEGATIVE,1,76.02,hand,no
+yesno,smoking_noyabrsk_2,NEGATIVE,1,116.92,hand,no
+yesno,smoking_noyabrsk_2,NEGATIVE,1,132.04,hand,no
+yesno,smoking_noyabrsk_2,NEGATIVE,1,231.19,hand,no
+yesno,smoking_noyabrsk_3,NEGATIVE,1,5.49,hand,no
+yesno,smoking_noyabrsk_3,NEGATIVE,1,16.58,hand,no
+yesno,smoking_noyabrsk_3,NEGATIVE,1,22.83,hand,no
+yesno,smoking_noyabrsk_3,NEGATIVE,1,219.15,hand,no
+yesno,smoking_noyabrsk_3,NEGATIVE,1,254.86,hand,no
+yesno,распитие (2),NEGATIVE,1,2.57,hand,no
+yesno,распитие (2),NEGATIVE,10,23.07,hand,no
+yesno,распитие (2),NEGATIVE,10,25.43,hand,no

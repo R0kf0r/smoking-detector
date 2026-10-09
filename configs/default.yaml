@@ -1,0 +1,99 @@
+# Все пороги и параметры конвейера. Меняются только до тега freeze-v1.
+# Единицы: секунды, пиксели исходного кадра; расстояния d — в долях масштаба человека (длины торса).
+
+video:
+  target_fps: 15            # сколько кадров в секунду обрабатываем моделью; 0 = все кадры
+
+pose:
+  model: yolo26s-pose.pt    # точнее: yolo26m-pose.pt; быстрее: yolo26n-pose.pt
+  imgsz: 1280               # вход модели; больше — лучше для мелких людей, но медленнее
+  conf: 0.25                # минимальная уверенность рамки человека
+  device: auto              # auto: mps на Mac, иначе cpu
+  kpt_conf_min: 0.30        # точка с меньшей уверенностью считается невидимой
+
+tracker:
+  # BoT-SORT из Ultralytics. ВНИМАНИЕ: appearance_thresh здесь — минимальная похожесть
+  # (в коде сравнивается расстояние с 1 - appearance_thresh), поэтому 0.8, а не 0.25.
+  with_reid: true
+  appearance_thresh: 0.8
+  proximity_thresh: 0.5
+  track_high_thresh: 0.25
+  track_low_thresh: 0.1
+  new_track_thresh: 0.25
+  match_thresh: 0.8
+  track_buffer_s: 4.0       # сколько секунд помнить пропавшего человека
+  stitch_max_gap_s: 2.0     # склейка обрывков трека после прогона
+  stitch_max_center_shift: 0.6   # сдвиг центра рамки в долях высоты рамки
+
+geometry:
+  mouth_offset: 0.6         # рот = нос + 0.6·(нос − середина глаз)
+  hand_extension: 0.25      # кисть = запястье + 0.25·(запястье − локоть)
+  bbox_scale_factor: 0.3    # масштаб, если торса не видно: 0.3·диагональ рамки
+  scale_smooth_s: 1.0       # сглаживание масштаба во времени
+  min_person_height_px: 80  # ниже — по правилам это IGNORE, события не выдаём
+
+signal:
+  max_gap_s: 0.4            # короткие провалы точек заполняем интерполяцией
+  smooth_window_s: 0.4      # центрированная медиана (без задержки: обработка офлайн)
+
+cycles:
+  # На реальных записях с камер (эталон, Гатчина) затяжка даёт d ≈ 0,09–0,26, а рука с сигаретой
+  # между затяжками держится на d ≈ 0,26–0,37 — поэтому пороги выше, чем в синтетике.
+  # Итоговые значения (9.10, до скрытого набора): середина плато F1 на эталоне —
+  # python -m smokedet.calibrate --run-dir results/reference --gt labels/reference.csv --clip-level
+  enter_threshold: 0.24     # d ниже — рука у рта (вход, гистерезис)
+  exit_threshold: 0.40     # d выше — рука ушла (выход)
+  min_pause_s: 0.3          # правила: 0,5 с; минус допуск 0,2 с на шум
+  max_pause_s: 5.2          # правила: 5 с; плюс допуск 0,2 с
+  max_nan_at_mouth_s: 2.0   # если у рта точки пропали дольше — цикл не засчитываем
+  approach_lookback_s: 2.0  # поиск начала подхода руки
+  retreat_lookahead_s: 2.0  # поиск конца отвода руки
+  require_visible_approach: false   # true — не считать цикл, если трек начался с рукой у рта
+  relative_exit: 0.08       # выход и при подъёме d на 0,08 над минимумом паузы (рука у лица между затяжками); 0 — выкл.
+  relative_exit_hold_s: 0.25
+
+events:
+  window_s: 20.0            # два цикла в пределах 20 с
+  merge_gap_s: 15.0         # циклы одного человека объединяем при паузе до 15 с
+  min_cycles: 2
+  allow_single_with_object: true   # один цикл + VLM уверенно видит сигарету или вейп
+  output_min_confidence: 0.0
+
+vlm:
+  enabled: true
+  backend: mlx              # mlx (mlx-vlm на Mac) или none
+  model: mlx-community/Qwen3-VL-4B-Instruct-4bit
+  prompt: list_neutral      # вариант промпта из smokedet/verify.py (PROMPTS); выбирает smokedet.vlm_probe
+  scan_threshold: 0.45      # кадры, где d ниже, проверяем у VLM (с запасом над порогом входа)
+  sample_hz: 2.0            # не чаще двух кадров в секунду на человека
+  max_frames_per_segment: 8   # длинная пауза у лица — до 8 кадров, чтобы голоса были у каждого цикла
+  max_requests_per_clip: 400   # потолок кадров на клип (длинный фон с толпой): берём самые близкие ко рту
+  crop_size: 448            # кроп увеличиваем до этого размера (не меньше 336)
+  min_votes: 1              # сколько кадров паузы с «сигаретой» нужно для прямого признака
+  hand_veto: false          # true — вето, если VLM видит у рта пустую руку; выкл.: сигарету на камерах часто не видно
+  vape_is_smoke: false      # false — прямой признак только «сигарета» (вейп модель путает с бутылкой)
+  max_tokens: 6             # для промптов задаётся в PROMPTS; здесь — запасное значение
+
+object_veto:
+  enabled: true             # детектор предметов COCO у лица
+  model: yolo26s.pt
+  classes: [cell phone, bottle, cup, wine glass]
+  conf: 0.35
+
+kinematics:
+  both_hands_veto: true     # обе кисти у лица весь цикл — поправляет маску, не курит
+
+render:
+  font_regular: static/GolosText-Regular.ttf
+  font_bold: static/GolosText-SemiBold.ttf
+  text_size: 0.022          # доля высоты кадра
+  crf: 23
+
+presets:
+  fast:                     # экономный режим
+    video: {target_fps: 10}
+    pose: {model: yolo26n-pose.pt, imgsz: 960}
+    vlm: {max_frames_per_segment: 3}
+  accurate:                 # точный режим
+    video: {target_fps: 15}
+    pose: {model: yolo26m-pose.pt, imgsz: 1280}

@@ -1,0 +1,338 @@
+[10:15:44]   ВНИМАНИЕ: camera_id взят из имени папки. Проверьте его перед сдачей (--camera-id или --camera-map clip_id,camera_id)
+[10:15:44] smokedet 1.0.0: 31 клип(ов), конфиг 82c4f6b3ba5c, пресет —
+[10:15:45] [1/31] 5 (камера positive)
+[10:15:45]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/5__257e0826.npz
+[10:15:45]   треков 2, циклов 0, событий 0, обработка 16.5 с на 6.7 с видео (стена 0.0 с)
+[10:15:45] [2/31] 2025_11_06_08_15_57 (камера negative)
+[10:15:45]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_15_57__257e0826.npz
+[12:40:45]   VLM: 6 кропов
+[12:40:54]   треков 1, циклов 1, событий 1, обработка 8768.2 с на 57.2 с видео (стена 8709.5 с)
+[12:40:54] [3/31] sm_9 (камера positive)
+[12:40:54]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_9__257e0826.npz
+[12:40:56]   VLM: 4 кропов
+[12:41:00]   треков 1, циклов 1, событий 1, обработка 15.1 с на 8.4 с видео (стена 5.7 с)
+[12:41:00] [4/31] 2025_11_06_08_33_31 (камера negative)
+[12:41:00]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_33_31__257e0826.npz
+[12:41:02]   VLM: 36 кропов
+[12:41:43]   треков 6, циклов 7, событий 1, обработка 120.2 с на 72.9 с видео (стена 42.7 с)
+[12:41:43] [5/31] sm_4 (камера positive)
+[12:41:43]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_4__257e0826.npz
+[12:41:43]   VLM: 4 кропов
+[12:41:48]   треков 1, циклов 3, событий 1, обработка 15.8 с на 9.6 с видео (стена 5.0 с)
+[12:41:48] [6/31] 2025_11_06_08_35_37 (камера negative)
+[12:41:48]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_35_37__257e0826.npz
+[12:41:51]   VLM: 37 кропов
+[12:42:33]   треков 3, циклов 5, событий 4, обработка 147.9 с на 103.0 с видео (стена 44.9 с)
+[12:42:33] [7/31] 2025_11_06_08_23_06 (камера negative)
+[12:42:33]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_23_06__257e0826.npz
+[12:42:35]   VLM: 14 кропов
+[12:42:50]   треков 2, циклов 1, событий 1, обработка 81.4 с на 69.9 с видео (стена 17.6 с)
+[12:42:50] [8/31] 2025_11_06_08_13_58 (камера negative)
+[12:42:50]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_13_58__257e0826.npz
+[12:42:53]   VLM: 41 кропов
+[12:43:39]   треков 2, циклов 7, событий 2, обработка 161.3 с на 106.2 с видео (стена 49.0 с)
+[12:43:39] [9/31] 1_drink (камера negative)
+[12:43:39]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/1_drink__257e0826.npz
+[12:43:41]   VLM: 20 кропов
+[12:44:04]   треков 2, циклов 5, событий 1, обработка 84.8 с на 55.2 с видео (стена 24.7 с)
+[12:44:04] [10/31] 2 (камера positive)
+[12:44:04]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2__257e0826.npz
+[12:44:05]   VLM: 27 кропов
+[12:44:35]   треков 22, циклов 2, событий 2, обработка 47.5 с на 14.0 с видео (стена 31.5 с)
+[12:44:35] [11/31] smoking_Jar (2) (камера positive)
+[12:44:36]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_Jar (2)__257e0826.npz
+[12:44:37]   VLM: 10 кропов
+[12:44:48]   треков 12, циклов 1, событий 1, обработка 28.3 с на 13.9 с видео (стена 12.5 с)
+[12:44:48] [12/31] smoking_Jar (1) (камера positive)
+[12:44:48]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_Jar (1)__257e0826.npz
+[12:44:49]   VLM: 4 кропов
+[12:44:54]   треков 12, циклов 1, событий 1, обработка 22.4 с на 14.7 с видео (стена 5.7 с)
+[12:44:54] [13/31] sm_5 (камера positive)
+[12:44:54]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_5__257e0826.npz
+[12:44:55]   VLM: 4 кропов
+[12:44:59]   треков 3, циклов 0, событий 0, обработка 24.2 с на 15.3 с видео (стена 5.8 с)
+[12:44:59] [14/31] sm_y_2 (камера positive)
+[12:45:00]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_y_2__257e0826.npz
+[12:45:01]   VLM: 23 кропов
+[12:45:26]   треков 13, циклов 2, событий 0, обработка 42.7 с на 14.6 с видео (стена 26.5 с)
+[12:45:26] [15/31] sm_7 (камера positive)
+[12:45:26]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_7__257e0826.npz
+[12:45:27]   VLM: 2 кропов
+[12:45:29]   треков 3, циклов 0, событий 0, обработка 20.7 с на 16.3 с видео (стена 2.9 с)
+[12:45:29] [16/31] 2025_11_06_08_19_11 (камера negative)
+[12:45:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_19_11__257e0826.npz
+[12:45:32]   VLM: 54 кропов
+[12:46:33]   треков 2, циклов 11, событий 3, обработка 155.9 с на 101.9 с видео (стена 63.8 с)
+[12:46:33] [17/31] распитие (камера negative)
+[12:46:45]   кадр 150/995, 12.7 кадр/с
+[12:46:56]   кадр 300/995, 13.0 кадр/с
+[12:47:08]   кадр 450/995, 12.7 кадр/с
+[12:47:20]   кадр 600/995, 12.8 кадр/с
+[12:47:31]   кадр 750/995, 12.9 кадр/с
+[12:47:42]   кадр 900/995, 12.9 кадр/с
+[12:47:52]   VLM: 23 кропов
+[12:48:18]   треков 5, циклов 8, событий 2, обработка 105.1 с на 66.3 с видео (стена 105.3 с)
+[12:48:18] [18/31] 4 (камера positive)
+[12:48:18]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/4__257e0826.npz
+[12:48:20]   VLM: 24 кропов
+[12:48:47]   треков 15, циклов 4, событий 4, обработка 51.7 с на 20.4 с видео (стена 29.1 с)
+[12:48:47] [19/31] _88 (камера positive)
+[12:48:47]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/_88__257e0826.npz
+[12:48:48]   VLM: 2 кропов
+[12:48:50]   треков 1, циклов 1, событий 1, обработка 40.1 с на 34.4 с видео (стена 2.7 с)
+[12:48:50] [20/31] sm_3 (камера positive)
+[12:48:50]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_3__257e0826.npz
+[12:48:55] Остановлено пользователем; сохраняю то, что успели
+[12:48:56] Готово за 9191 с: событий 26, клипов с ошибкой 0. Результаты: results/reference
+[12:55:56]   ВНИМАНИЕ: camera_id взят из имени папки. Проверьте его перед сдачей (--camera-id или --camera-map clip_id,camera_id)
+[12:55:56] smokedet 1.0.0: 31 клип(ов), конфиг 52ab8dee4a63, пресет —
+[12:55:56] [1/31] 5 (камера positive)
+[12:55:56]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/5__257e0826.npz
+[12:55:56]   треков 2, циклов 0, событий 0, обработка 16.5 с на 6.7 с видео (стена 0.0 с)
+[12:55:56] [2/31] 2025_11_06_08_15_57 (камера negative)
+[12:55:56]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_15_57__257e0826.npz
+[12:56:02]   VLM: 10 кропов
+[12:56:14]   треков 1, циклов 1, событий 0, обработка 76.4 с на 57.2 с видео (стена 17.7 с)
+[12:56:14] [3/31] sm_9 (камера positive)
+[12:56:14]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_9__257e0826.npz
+[12:56:15]   VLM: 8 кропов
+[12:56:24]   треков 1, циклов 1, событий 1, обработка 19.9 с на 8.4 с видео (стена 10.4 с)
+[12:56:24] [4/31] 2025_11_06_08_33_31 (камера negative)
+[12:56:25]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_33_31__257e0826.npz
+[12:56:27]   VLM: 38 кропов
+[12:57:12]   треков 6, циклов 7, событий 1, обработка 125.4 с на 72.9 с видео (стена 47.8 с)
+[12:57:12] [5/31] sm_4 (камера positive)
+[12:57:12]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_4__257e0826.npz
+[12:57:13]   VLM: 8 кропов
+[12:57:23]   треков 1, циклов 3, событий 1, обработка 21.1 с на 9.6 с видео (стена 10.4 с)
+[12:57:23] [6/31] 2025_11_06_08_35_37 (камера negative)
+[12:57:23]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_35_37__257e0826.npz
+[12:57:25]   VLM: 37 кропов
+[12:58:09]   треков 3, циклов 5, событий 0, обработка 149.5 с на 103.0 с видео (стена 46.5 с)
+[12:58:09] [7/31] 2025_11_06_08_23_06 (камера negative)
+[12:58:09]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_23_06__257e0826.npz
+[12:58:11]   VLM: 14 кропов
+[12:58:28]   треков 2, циклов 1, событий 0, обработка 82.4 с на 69.9 с видео (стена 18.6 с)
+[12:58:28] [8/31] 2025_11_06_08_13_58 (камера negative)
+[12:58:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_13_58__257e0826.npz
+[12:58:30]   VLM: 41 кропов
+[12:59:19]   треков 2, циклов 7, событий 1, обработка 163.5 с на 106.2 с видео (стена 51.2 с)
+[12:59:19] [9/31] 1_drink (камера negative)
+[12:59:19]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/1_drink__257e0826.npz
+[12:59:21]   VLM: 30 кропов
+[12:59:56]   треков 2, циклов 5, событий 1, обработка 97.5 с на 55.2 с видео (стена 37.4 с)
+[12:59:56] [10/31] 2 (камера positive)
+[12:59:56]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2__257e0826.npz
+[12:59:58]   VLM: 29 кропов
+[13:00:32]   треков 22, циклов 2, событий 1, обработка 52.2 с на 14.0 с видео (стена 36.2 с)
+[13:00:32] [11/31] smoking_Jar (2) (камера positive)
+[13:00:33]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_Jar (2)__257e0826.npz
+[13:00:34]   VLM: 14 кропов
+[13:00:51]   треков 12, циклов 1, событий 1, обработка 33.9 с на 13.9 с видео (стена 18.1 с)
+[13:00:51] [12/31] smoking_Jar (1) (камера positive)
+[13:00:51]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_Jar (1)__257e0826.npz
+[13:00:52]   VLM: 4 кропов
+[13:00:57]   треков 12, циклов 1, событий 0, обработка 22.9 с на 14.7 с видео (стена 6.2 с)
+[13:00:57] [13/31] sm_5 (камера positive)
+[13:00:57]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_5__257e0826.npz
+[13:00:58]   VLM: 4 кропов
+[13:01:03]   треков 3, циклов 0, событий 0, обработка 24.5 с на 15.3 с видео (стена 6.1 с)
+[13:01:03] [14/31] sm_y_2 (камера positive)
+[13:01:03]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_y_2__257e0826.npz
+[13:01:04]   VLM: 24 кропов
+[13:01:32]   треков 13, циклов 2, событий 0, обработка 45.3 с на 14.6 с видео (стена 29.1 с)
+[13:01:32] [15/31] sm_7 (камера positive)
+[13:01:32]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_7__257e0826.npz
+[13:01:33]   VLM: 2 кропов
+[13:01:35]   треков 3, циклов 0, событий 0, обработка 20.9 с на 16.3 с видео (стена 3.0 с)
+[13:01:35] [16/31] 2025_11_06_08_19_11 (камера negative)
+[13:01:35]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_19_11__257e0826.npz
+[13:01:38]   VLM: 54 кропов
+[13:02:42]   треков 2, циклов 11, событий 3, обработка 159.5 с на 101.9 с видео (стена 67.4 с)
+[13:02:42] [17/31] распитие (камера negative)
+[13:02:42]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/распитие__257e0826.npz
+[13:02:45]   VLM: 27 кропов
+[13:03:17]   треков 5, циклов 8, событий 2, обработка 111.4 с на 66.3 с видео (стена 35.0 с)
+[13:03:17] [18/31] 4 (камера positive)
+[13:03:17]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/4__257e0826.npz
+[13:03:19]   VLM: 24 кропов
+[13:03:47]   треков 15, циклов 4, событий 3, обработка 52.1 с на 20.4 с видео (стена 29.5 с)
+[13:03:47] [19/31] _88 (камера positive)
+[13:03:47]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/_88__257e0826.npz
+[13:03:47]   VLM: 2 кропов
+[13:03:50]   треков 1, циклов 1, событий 0, обработка 40.2 с на 34.4 с видео (стена 2.7 с)
+[13:03:50] [20/31] sm_3 (камера positive)
+[13:03:50]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_3__257e0826.npz
+[13:03:57]   VLM: 49 кропов
+[13:04:55]   треков 9, циклов 9, событий 3, обработка 194.3 с на 117.4 с видео (стена 65.5 с)
+[13:04:55] [21/31] sm_2 (камера positive)
+[13:04:55]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_2__257e0826.npz
+[13:04:57]   VLM: 9 кропов
+[13:05:08]   треков 1, циклов 2, событий 1, обработка 43.2 с на 27.9 с видео (стена 12.9 с)
+[13:05:08] [22/31] sm_6 (камера positive)
+[13:05:08]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_6__257e0826.npz
+[13:05:10]   VLM: 25 кропов
+[13:05:40]   треков 2, циклов 4, событий 1, обработка 60.7 с на 25.6 с видео (стена 32.5 с)
+[13:05:40] [23/31] smoking_noyabrsk_2 (камера negative)
+[13:05:41]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_noyabrsk_2__257e0826.npz
+[13:05:49]   VLM: 118 кропов
+[13:08:10]   треков 14, циклов 8, событий 5, обработка 428.4 с на 257.9 с видео (стена 149.7 с)
+[13:08:10] [24/31] распитие (2) (камера negative)
+[13:08:10]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/распитие (2)__257e0826.npz
+[13:08:12]   VLM: 13 кропов
+[13:08:27]   треков 17, циклов 3, событий 0, обработка 46.7 с на 26.9 с видео (стена 17.1 с)
+[13:08:27] [25/31] smoking_noyabrsk_3 (камера negative)
+[13:08:27]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_noyabrsk_3__257e0826.npz
+[13:08:35]   VLM: 57 кропов
+[13:09:43]   треков 20, циклов 6, событий 3, обработка 377.3 с на 278.1 с видео (стена 75.7 с)
+[13:09:43] [26/31] 2025_12_08_13_02_26 (камера positive)
+[13:09:43]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_12_08_13_02_26__257e0826.npz
+[13:09:57]   VLM: 123 кропов
+[13:12:24]   треков 84, циклов 17, событий 4, обработка 807.4 с на 600.0 с видео (стена 161.0 с)
+[13:12:24] [27/31] 1 (камера positive)
+[13:12:24]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/1__257e0826.npz
+[13:12:27]   VLM: 43 кропов
+[13:13:19]   треков 18, циклов 8, событий 1, обработка 127.9 с на 66.2 с видео (стена 54.8 с)
+[13:13:19] [28/31] drinking_Jar (камера negative)
+[13:13:19]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/drinking_Jar__257e0826.npz
+[13:13:26]   VLM: 38 кропов
+[13:14:12]   треков 30, циклов 7, событий 4, обработка 161.5 с на 97.3 с видео (стена 53.3 с)
+[13:14:12] [29/31] 2025_10_22_12_38_57 (камера positive)
+[13:14:12]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_10_22_12_38_57__257e0826.npz
+[13:14:32]   VLM: 104 кропов
+[13:16:39]   треков 63, циклов 17, событий 5, обработка 804.0 с на 600.0 с видео (стена 147.3 с)
+[13:16:39] [30/31] sm_1 (камера positive)
+[13:16:39]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_1__257e0826.npz
+[13:16:53]   VLM: 289 кропов
+[13:22:44]   треков 63, циклов 31, событий 10, обработка 999.9 с на 600.2 с видео (стена 364.6 с)
+[13:22:44] [31/31] 3 (камера positive)
+[13:22:44]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/3__257e0826.npz
+[13:22:51]   VLM: 50 кропов
+[13:23:50]   треков 42, циклов 4, событий 2, обработка 215.6 с на 136.7 с видео (стена 66.0 с)
+[13:23:50] Готово за 1674 с: событий 54, клипов с ошибкой 0. Результаты: results/reference
+[13:44:26] smokedet 1.0.0: 31 клип(ов), конфиг ea5670fe9307, пресет —
+[13:44:27] [1/31] 5 (камера reference)
+[13:44:27]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/5__257e0826.npz
+[13:44:27]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/5__112f9b9a.json
+[13:44:27]   треков 2, циклов 0, событий 0, обработка 16.5 с на 6.7 с видео (стена 0.0 с)
+[13:44:27] [2/31] 2025_11_06_08_15_57 (камера reference)
+[13:44:27]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_15_57__257e0826.npz
+[13:44:27]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2025_11_06_08_15_57__112f9b9a.json
+[13:44:27]   треков 1, циклов 1, событий 0, обработка 76.4 с на 57.2 с видео (стена 0.1 с)
+[13:44:27] [3/31] sm_9 (камера reference)
+[13:44:27]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_9__257e0826.npz
+[13:44:27]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_9__112f9b9a.json
+[13:44:27]   треков 1, циклов 1, событий 1, обработка 19.9 с на 8.4 с видео (стена 0.1 с)
+[13:44:27] [4/31] 2025_11_06_08_33_31 (камера reference)
+[13:44:27]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_33_31__257e0826.npz
+[13:44:27]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2025_11_06_08_33_31__112f9b9a.json
+[13:44:27]   треков 6, циклов 4, событий 2, обработка 125.4 с на 72.9 с видео (стена 0.1 с)
+[13:44:27] [5/31] sm_4 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_4__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_4__112f9b9a.json
+[13:44:28]   треков 1, циклов 2, событий 1, обработка 21.1 с на 9.6 с видео (стена 0.1 с)
+[13:44:28] [6/31] 2025_11_06_08_35_37 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_35_37__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2025_11_06_08_35_37__112f9b9a.json
+[13:44:28]   треков 3, циклов 2, событий 0, обработка 149.5 с на 103.0 с видео (стена 0.1 с)
+[13:44:28] [7/31] 2025_11_06_08_23_06 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_23_06__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2025_11_06_08_23_06__112f9b9a.json
+[13:44:28]   треков 2, циклов 1, событий 0, обработка 82.4 с на 69.9 с видео (стена 0.1 с)
+[13:44:28] [8/31] 2025_11_06_08_13_58 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_13_58__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2025_11_06_08_13_58__112f9b9a.json
+[13:44:28]   треков 2, циклов 5, событий 1, обработка 163.5 с на 106.2 с видео (стена 0.1 с)
+[13:44:28] [9/31] 1_drink (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/1_drink__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/1_drink__112f9b9a.json
+[13:44:28]   треков 2, циклов 5, событий 1, обработка 97.5 с на 55.2 с видео (стена 0.1 с)
+[13:44:28] [10/31] 2 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2__112f9b9a.json
+[13:44:28]   треков 22, циклов 1, событий 1, обработка 52.2 с на 14.0 с видео (стена 0.1 с)
+[13:44:28] [11/31] smoking_Jar (2) (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_Jar (2)__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/smoking_Jar (2)__112f9b9a.json
+[13:44:28]   треков 12, циклов 1, событий 1, обработка 33.9 с на 13.9 с видео (стена 0.1 с)
+[13:44:28] [12/31] smoking_Jar (1) (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_Jar (1)__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/smoking_Jar (1)__112f9b9a.json
+[13:44:28]   треков 12, циклов 1, событий 1, обработка 22.9 с на 14.7 с видео (стена 0.1 с)
+[13:44:28] [13/31] sm_5 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_5__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_5__112f9b9a.json
+[13:44:28]   треков 3, циклов 1, событий 1, обработка 24.5 с на 15.3 с видео (стена 0.1 с)
+[13:44:28] [14/31] sm_y_2 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_y_2__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_y_2__112f9b9a.json
+[13:44:28]   треков 13, циклов 1, событий 0, обработка 45.3 с на 14.6 с видео (стена 0.1 с)
+[13:44:28] [15/31] sm_7 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_7__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_7__112f9b9a.json
+[13:44:28]   треков 3, циклов 0, событий 0, обработка 20.9 с на 16.3 с видео (стена 0.1 с)
+[13:44:28] [16/31] 2025_11_06_08_19_11 (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_11_06_08_19_11__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2025_11_06_08_19_11__112f9b9a.json
+[13:44:28]   треков 2, циклов 6, событий 1, обработка 159.5 с на 101.9 с видео (стена 0.1 с)
+[13:44:28] [17/31] распитие (камера reference)
+[13:44:28]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/распитие__257e0826.npz
+[13:44:28]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/распитие__112f9b9a.json
+[13:44:28]   треков 5, циклов 6, событий 2, обработка 111.4 с на 66.3 с видео (стена 0.1 с)
+[13:44:28] [18/31] 4 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/4__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/4__112f9b9a.json
+[13:44:29]   треков 15, циклов 4, событий 1, обработка 52.1 с на 20.4 с видео (стена 0.1 с)
+[13:44:29] [19/31] _88 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/_88__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/_88__112f9b9a.json
+[13:44:29]   треков 1, циклов 1, событий 0, обработка 40.2 с на 34.4 с видео (стена 0.1 с)
+[13:44:29] [20/31] sm_3 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_3__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_3__112f9b9a.json
+[13:44:29]   треков 9, циклов 6, событий 3, обработка 194.3 с на 117.4 с видео (стена 0.1 с)
+[13:44:29] [21/31] sm_2 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_2__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_2__112f9b9a.json
+[13:44:29]   треков 1, циклов 2, событий 1, обработка 43.2 с на 27.9 с видео (стена 0.1 с)
+[13:44:29] [22/31] sm_6 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_6__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_6__112f9b9a.json
+[13:44:29]   треков 2, циклов 4, событий 1, обработка 60.7 с на 25.6 с видео (стена 0.1 с)
+[13:44:29] [23/31] smoking_noyabrsk_2 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_noyabrsk_2__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/smoking_noyabrsk_2__112f9b9a.json
+[13:44:29]   треков 14, циклов 4, событий 4, обработка 428.4 с на 257.9 с видео (стена 0.1 с)
+[13:44:29] [24/31] распитие (2) (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/распитие (2)__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/распитие (2)__112f9b9a.json
+[13:44:29]   треков 17, циклов 3, событий 1, обработка 46.7 с на 26.9 с видео (стена 0.1 с)
+[13:44:29] [25/31] smoking_noyabrsk_3 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/smoking_noyabrsk_3__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/smoking_noyabrsk_3__112f9b9a.json
+[13:44:29]   треков 20, циклов 2, событий 2, обработка 377.3 с на 278.1 с видео (стена 0.1 с)
+[13:44:29] [26/31] 2025_12_08_13_02_26 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_12_08_13_02_26__257e0826.npz
+[13:44:29]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2025_12_08_13_02_26__112f9b9a.json
+[13:44:29]   треков 84, циклов 13, событий 4, обработка 807.4 с на 600.0 с видео (стена 0.2 с)
+[13:44:29] [27/31] 1 (камера reference)
+[13:44:29]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/1__257e0826.npz
+[13:44:30]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/1__112f9b9a.json
+[13:44:30]   треков 18, циклов 7, событий 2, обработка 127.9 с на 66.2 с видео (стена 0.1 с)
+[13:44:30] [28/31] drinking_Jar (камера reference)
+[13:44:30]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/drinking_Jar__257e0826.npz
+[13:44:30]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/drinking_Jar__112f9b9a.json
+[13:44:30]   треков 30, циклов 5, событий 2, обработка 161.5 с на 97.3 с видео (стена 0.2 с)
+[13:44:30] [29/31] 2025_10_22_12_38_57 (камера reference)
+[13:44:30]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/2025_10_22_12_38_57__257e0826.npz
+[13:44:30]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/2025_10_22_12_38_57__112f9b9a.json
+[13:44:30]   треков 63, циклов 17, событий 5, обработка 804.0 с на 600.0 с видео (стена 0.2 с)
+[13:44:30] [30/31] sm_1 (камера reference)
+[13:44:30]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/sm_1__257e0826.npz
+[13:44:30]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/sm_1__112f9b9a.json
+[13:44:30]   треков 63, циклов 21, событий 8, обработка 999.9 с на 600.2 с видео (стена 0.2 с)
+[13:44:30] [31/31] 3 (камера reference)
+[13:44:30]   кэш: /Users/mac/PycharmProjects/smoking-detector/results/cache/pose/3__257e0826.npz
+[13:44:30]   кэш проверки: /Users/mac/PycharmProjects/smoking-detector/results/cache/verify/3__112f9b9a.json
+[13:44:30]   треков 42, циклов 2, событий 1, обработка 215.6 с на 136.7 с видео (стена 0.1 с)
+[13:44:30] Готово за 3 с: событий 48, клипов с ошибкой 0. Результаты: results/reference

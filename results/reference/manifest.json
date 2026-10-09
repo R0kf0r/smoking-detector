@@ -1,0 +1,221 @@
+{
+  "project": "smoking-detector",
+  "version": "1.0.0",
+  "created_at": "2026-10-09T13:44:30+03:00",
+  "command": "python -m smokedet.run --input private/reference --out-dir results/reference --camera-id reference",
+  "git": {
+    "commit": "a3b4c6d4ea855ca54733e4469b84877e2fac461e",
+    "dirty": true,
+    "tag": "a3b4c6d"
+  },
+  "config": {
+    "path": "/Users/mac/PycharmProjects/smoking-detector/configs/default.yaml",
+    "preset": null,
+    "overrides": [],
+    "hash": "ea5670fe9307",
+    "values": {
+      "video": {
+        "target_fps": 15
+      },
+      "pose": {
+        "model": "yolo26s-pose.pt",
+        "imgsz": 1280,
+        "conf": 0.25,
+        "device": "auto",
+        "kpt_conf_min": 0.3
+      },
+      "tracker": {
+        "with_reid": true,
+        "appearance_thresh": 0.8,
+        "proximity_thresh": 0.5,
+        "track_high_thresh": 0.25,
+        "track_low_thresh": 0.1,
+        "new_track_thresh": 0.25,
+        "match_thresh": 0.8,
+        "track_buffer_s": 4.0,
+        "stitch_max_gap_s": 2.0,
+        "stitch_max_center_shift": 0.6
+      },
+      "geometry": {
+        "mouth_offset": 0.6,
+        "hand_extension": 0.25,
+        "bbox_scale_factor": 0.3,
+        "scale_smooth_s": 1.0,
+        "min_person_height_px": 80
+      },
+      "signal": {
+        "max_gap_s": 0.4,
+        "smooth_window_s": 0.4
+      },
+      "cycles": {
+        "enter_threshold": 0.24,
+        "exit_threshold": 0.4,
+        "min_pause_s": 0.3,
+        "max_pause_s": 5.2,
+        "max_nan_at_mouth_s": 2.0,
+        "approach_lookback_s": 2.0,
+        "retreat_lookahead_s": 2.0,
+        "require_visible_approach": false,
+        "relative_exit": 0.08,
+        "relative_exit_hold_s": 0.25
+      },
+      "events": {
+        "window_s": 20.0,
+        "merge_gap_s": 15.0,
+        "min_cycles": 2,
+        "allow_single_with_object": true,
+        "output_min_confidence": 0.0
+      },
+      "vlm": {
+        "enabled": true,
+        "backend": "mlx",
+        "model": "mlx-community/Qwen3-VL-4B-Instruct-4bit",
+        "prompt": "list_neutral",
+        "scan_threshold": 0.45,
+        "sample_hz": 2.0,
+        "max_frames_per_segment": 8,
+        "max_requests_per_clip": 400,
+        "crop_size": 448,
+        "min_votes": 1,
+        "hand_veto": false,
+        "vape_is_smoke": false,
+        "max_tokens": 6
+      },
+      "object_veto": {
+        "enabled": true,
+        "model": "yolo26s.pt",
+        "classes": [
+          "cell phone",
+          "bottle",
+          "cup",
+          "wine glass"
+        ],
+        "conf": 0.35
+      },
+      "kinematics": {
+        "both_hands_veto": true
+      },
+      "render": {
+        "font_regular": "static/GolosText-Regular.ttf",
+        "font_bold": "static/GolosText-SemiBold.ttf",
+        "text_size": 0.022,
+        "crf": 23
+      }
+    }
+  },
+  "label": "smoking_like",
+  "confidence_threshold": 0.0,
+  "decision_rules": {
+    "signal": "d(t) = min по двум рукам ‖кисть − рот‖ / длина торса; рот = нос + 0.6·(нос − середина глаз); кисть = запястье + 0.25·(запястье − локоть); заполнение провалов до 0.4 с, центрированная медиана 0.4 с",
+    "cycle": "рука у рта: вход d < 0.24, выход d > 0.4 (гистерезис) или подъём d над минимумом паузы на 0.08 и выше порога входа дольше 0.25 с (затяжки, между которыми рука остаётся у лица); пауза у рта 0.3–5.2 с (правила: 0,5–5 с с допуском 0,2 с на шум); начало цикла — начало подхода руки, конец — конец отвода",
+    "event": "не меньше 2 циклов в окне 20.0 с или 1 цикл + прямой признак (VLM видит cigarette не меньше чем в 1 кадре паузы и таких кадров больше, чем кадров с другим предметом)",
+    "merge": "циклы одного person_track_id объединяются, если пауза между ними ≤ 15.0 с; события разных людей не объединяются",
+    "veto": "цикл не засчитывается, если в кадрах паузы у рта детектор COCO или VLM видит телефон, бутылку, банку, чашку, еду, леденец, зубочистку или ручку, либо обе кисти у лица больше половины паузы без прямого признака",
+    "visibility": "медианная высота человека за время события ≥ 80 px",
+    "roi": "человек в зоне, если середина нижней стороны рамки внутри маски не меньше чем в 50% кадров события; без маски — весь кадр",
+    "peak_and_box": "peak_sec — середина паузы самого надёжного цикла (с прямым признаком, иначе с минимальным d); рамка — детекция человека, ближайшая к peak_sec, в пикселях исходного кадра",
+    "confidence": "0,45 / 0,60 / 0,70 / 0,80 при 1 / 2 / 3 / 4+ циклах, +0,20 за прямой признак, максимум 0,99",
+    "time": "секунды от начала ролика по меткам времени кадров (PTS)"
+  },
+  "models": [
+    {
+      "name": "YOLO26-pose",
+      "file": "yolo26s-pose.pt",
+      "sha256": "a083adb42303728ae14c4bd6bd56d80da46f82fb2564dbd6f31dcc92ea321646",
+      "source": "Ultralytics, github.com/ultralytics/assets/releases",
+      "license": "AGPL-3.0",
+      "purpose": "люди, 17 ключевых точек COCO, трекинг BoT-SORT"
+    },
+    {
+      "name": "YOLO26 (COCO)",
+      "file": "yolo26s.pt",
+      "sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+      "source": "Ultralytics, github.com/ultralytics/assets/releases",
+      "license": "AGPL-3.0",
+      "purpose": "вето по предметам у лица: cell phone, bottle, cup, wine glass",
+      "enabled": true
+    },
+    {
+      "name": "Qwen3-VL-4B-Instruct (4-bit MLX)",
+      "file": "mlx-community/Qwen3-VL-4B-Instruct-4bit",
+      "source": "huggingface.co/mlx-community/Qwen3-VL-4B-Instruct-4bit",
+      "license": "Apache-2.0",
+      "purpose": "проверка кадров паузы у рта: что у рта",
+      "runtime": "mlx-vlm, локально",
+      "enabled": true
+    }
+  ],
+  "vlm": {
+    "prompt_name": "list_neutral",
+    "prompt": "This is a low-resolution crop from a street CCTV camera. Look at the person's hand near the face. People often just touch their face, cover their mouth, talk on the phone, drink or eat. Answer 'cigarette' or 'vape' only if you clearly see one. What is in the hand near the mouth? Answer with exactly one word from this list: nothing, glove, phone, bottle, can, cup, food, lollipop, toothpick, pen, cigarette, vape, unclear.",
+    "labels": [
+      "cigarette",
+      "vape",
+      "lollipop",
+      "toothpick",
+      "pen",
+      "phone",
+      "bottle",
+      "can",
+      "cup",
+      "food",
+      "hand",
+      "unclear"
+    ],
+    "temperature": 0.0,
+    "max_tokens": 6,
+    "crop_size": 448,
+    "used_in_run": true
+  },
+  "training": "дообучение не проводилось: все модели предобученные, параметры правил подобраны на эталонном наборе",
+  "data_handling": "видео объекта обрабатывается локально на ноутбуке команды, облачные модели к нему не подключались; отдельные кадры для отладки и разметки эталона просматривал ИИ-ассистент (с письменного разрешения ментора 9.10.2026)",
+  "data_sources": [
+    "сценарные ролики организаторов (эталон, 8.10.2026) — для подбора порогов; не публикуются",
+    "публичные данные — см. data/public/SOURCES.md"
+  ],
+  "fonts": [
+    {
+      "name": "Golos Text",
+      "license": "SIL OFL 1.1",
+      "files": [
+        "static/GolosText-Regular.ttf",
+        "static/GolosText-SemiBold.ttf"
+      ]
+    }
+  ],
+  "libraries": {
+    "python": "3.12.15",
+    "ultralytics": "8.4.174",
+    "torch": "2.14.1",
+    "torchvision": "0.29.1",
+    "numpy": "2.5.3",
+    "opencv-python": "5.0.0.93",
+    "av": "19.0.1",
+    "lap": "0.5.13",
+    "pandas": "3.0.6",
+    "pillow": "12.3.0",
+    "pyyaml": "6.0.3",
+    "mlx": "0.32.3",
+    "mlx-vlm": "0.7.6",
+    "transformers": "5.19.0",
+    "ffmpeg": "ffmpeg version 5.1 Copyright (c) 2000-2022 the FFmpeg developers"
+  },
+  "hardware": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "device": "mps",
+    "chip": "Apple M1 Pro",
+    "memory_gb": 32.0,
+    "macos": "26.6.2"
+  },
+  "run": {
+    "input": "private/reference",
+    "clips": 31,
+    "ok": 31,
+    "errors": [],
+    "events": 48,
+    "video_seconds": 3635.4,
+    "processing_seconds": 5581.7,
+    "sec_per_min": 92.12
+  }
+}

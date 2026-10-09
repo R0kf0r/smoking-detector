@@ -48,8 +48,16 @@
 3. Этап C, события строго по SPEC §3–4.
 4. Выход: события в JSON/CSV, `manifest.json` и видео с отметками по `docs/DESIGN.md`.
 
-## Команды (дополняй по мере появления)
+## Состояние кода (v6)
+
+Ядро уже написано и покрыто тестами (`smokedet/`, `tests/`): конвейер, оценщик, правила, VLM-проверка, рендер, подбор порогов. Не переписывай модули с нуля: чини точечно и подтверждай тестами и метриками «до/после».
+
+## Команды
 
 - Тесты: `conda run --no-capture-output -n smoke python -m pytest -q`
-- Запуск пайплайна: появится на шаге M0
-- Оценка по протоколу: появится на шаге M1
+- Опись и заготовка разметки: `conda run --no-capture-output -n smoke python -m smokedet.inventory private/reference --labels-template labels/reference.csv --guess-labels`
+- Прогон эталона: `conda run --no-capture-output -n smoke python -m smokedet.run --input private/reference --out-dir results/reference --render-dir private/renders/reference --gt labels/reference.csv`
+- Подбор порогов: `conda run --no-capture-output -n smoke python -m smokedet.calibrate --run-dir results/reference --gt labels/reference.csv` (`--apply` записывает в конфиг)
+- Оценка по протоколу: `conda run --no-capture-output -n smoke python -m smokedet.evaluate --pred results/reference/events.json --gt labels/reference.csv --durations results/reference/timing.csv`
+- Скрытый набор: `conda run --no-capture-output -n smoke python -m smokedet.run --input private/hidden --out-dir results/hidden --camera-id <камера>`
+- Отлаживай по числам: `results/<прогон>/debug/<clip_id>.json` (циклы, отклонённые паузы, голоса VLM) и `signals/<clip_id>.csv`.
